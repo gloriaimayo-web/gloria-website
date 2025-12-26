@@ -1434,4 +1434,6 @@ img {
     width: 100%;
     margin: 0 auto;
     /* ← Esto lo centra dentro del contenedor */
+
 }
+background-image: url("fondo.png");
