@@ -8,6 +8,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap"
         rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body>
@@ -194,6 +196,206 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Chat"
             class="whatsapp-icon">
     </a>
+    <!-- AI Quick Assistant Floating Button + Modal -->
+    <button id="aiFab" class="ai-fab" aria-label="Ask AI">
+        Ask AI
+    </button>
+
+    <div id="aiModal" class="ai-modal" aria-hidden="true">
+        <div class="ai-modal__backdrop" id="aiBackdrop"></div>
+
+        <div class="ai-modal__panel" role="dialog" aria-modal="true" aria-labelledby="aiTitle">
+            <div class="ai-modal__header">
+                <h3 id="aiTitle">Quick Assistant</h3>
+                <button id="aiClose" class="ai-close" aria-label="Close">×</button>
+            </div>
+
+            <p class="ai-subtitle">
+                Answer a few quick questions and we’ll prepare a message for WhatsApp.
+            </p>
+
+            <!-- Optional: also send to Formspree (keeps a lead record) -->
+            <form id="aiForm" class="ai-form" action="https://formspree.io/f/xeeqjarv" method="POST">
+                <input type="hidden" name="source" value="AI Assistant Popup">
+
+                <label class="ai-label">
+                    Your name
+                    <input class="ai-input" type="text" name="name" placeholder="Full name" required>
+                </label>
+
+                <label class="ai-label">
+                    Phone (optional)
+                    <input class="ai-input" type="tel" name="phone" placeholder="+1 (___) ___-____">
+                </label>
+
+                <label class="ai-label">
+                    Email
+                    <input class="ai-input" type="email" name="email" placeholder="you@email.com" required>
+                </label>
+
+                <label class="ai-label">
+                    Type of business
+                    <select class="ai-input" name="business_type" required>
+                        <option value="" selected disabled>Select one…</option>
+                        <option>Hair salon / Barber</option>
+                        <option>Beauty / Spa</option>
+                        <option>Massage / Wellness</option>
+                        <option>Mechanic / Auto service</option>
+                        <option>Cleaning services</option>
+                        <option>Home services (plumbing/electrical/HVAC)</option>
+                        <option>Restaurant / Food</option>
+                        <option>Other</option>
+                    </select>
+                </label>
+
+                <label class="ai-label">
+                    What do you need help with?
+                    <select class="ai-input" name="need_help" required>
+                        <option value="" selected disabled>Select one…</option>
+                        <option>Online booking page + calendar</option>
+                        <option>CRM setup (customers, follow-ups)</option>
+                        <option>Automation (reminders, confirmations)</option>
+                        <option>Marketing / local visibility</option>
+                        <option>Not sure — need guidance</option>
+                    </select>
+                </label>
+
+                <label class="ai-label">
+                    Short message
+                    <textarea class="ai-input" name="message" rows="4"
+                        placeholder="Tell us what’s happening in your business…" required></textarea>
+                </label>
+
+                <label class="ai-label">
+                    Preferred contact time
+                    <select class="ai-input" name="preferred_time" required>
+                        <option value="" selected disabled>Select one…</option>
+                        <option>Morning (9–12)</option>
+                        <option>Afternoon (12–4)</option>
+                        <option>Evening (4–7)</option>
+                        <option>Anytime</option>
+                    </select>
+                </label>
+
+                <div class="ai-actions">
+                    <button type="button" id="aiSendWhatsApp" class="orange-btn ai-btn">
+                        Send via WhatsApp
+                    </button>
+
+                    <button type="submit" class="outline-btn ai-btn">
+                        Save Request
+                    </button>
+                </div>
+
+                <p id="aiStatus" class="ai-status" style="display:none;"></p>
+            </form>
+        </div>
+    </div>
+    <script>
+        // ===== AI Quick Assistant logic (no backend) =====
+        const aiFab = document.getElementById('aiFab');
+        const aiModal = document.getElementById('aiModal');
+        const aiBackdrop = document.getElementById('aiBackdrop');
+        const aiClose = document.getElementById('aiClose');
+        const aiForm = document.getElementById('aiForm');
+        const aiSendWhatsApp = document.getElementById('aiSendWhatsApp');
+        const aiStatus = document.getElementById('aiStatus');
+
+        // Your WhatsApp number (international format, no +, no spaces)
+        const WHATSAPP_NUMBER = "14376779018";
+
+        function openModal() {
+            aiModal.classList.add('is-open');
+            aiModal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeModal() {
+            aiModal.classList.remove('is-open');
+            aiModal.setAttribute('aria-hidden', 'true');
+        }
+
+        aiFab.addEventListener('click', openModal);
+        aiClose.addEventListener('click', closeModal);
+        aiBackdrop.addEventListener('click', closeModal);
+
+        // ESC to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && aiModal.classList.contains('is-open')) closeModal();
+        });
+
+        function buildWhatsAppMessage() {
+            const data = new FormData(aiForm);
+            const name = (data.get('name') || '').toString().trim();
+            const phone = (data.get('phone') || '').toString().trim();
+            const email = (data.get('email') || '').toString().trim();
+            const business = (data.get('business_type') || '').toString().trim();
+            const need = (data.get('need_help') || '').toString().trim();
+            const msg = (data.get('message') || '').toString().trim();
+            const time = (data.get('preferred_time') || '').toString().trim();
+
+            // A clean, professional WhatsApp message
+            return [
+                "Hi G&L Services Group, I'd like a free consultation.",
+                "",
+                `Name: ${name}`,
+                phone ? `Phone: ${phone}` : null,
+                `Email: ${email}`,
+                `Business type: ${business}`,
+                `Need help with: ${need}`,
+                `Preferred time: ${time}`,
+                "",
+                `Message: ${msg}`
+            ].filter(Boolean).join("\n");
+        }
+
+        function openWhatsApp(text) {
+            const encoded = encodeURIComponent(text);
+
+            // Use wa.me (best universal link). Some desktops will open WhatsApp Web or the app if installed.
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+            window.open(url, "_blank", "noopener");
+        }
+
+        // Button: Send via WhatsApp
+        aiSendWhatsApp.addEventListener('click', () => {
+            // Basic validity check (honours required fields)
+            if (!aiForm.checkValidity()) {
+                aiForm.reportValidity();
+                return;
+            }
+            openWhatsApp(buildWhatsAppMessage());
+        });
+
+        // Optional: Save Request (Formspree submit via AJAX so it doesn't redirect)
+        aiForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!aiForm.checkValidity()) {
+                aiForm.reportValidity();
+                return;
+            }
+
+            aiStatus.style.display = "block";
+            aiStatus.textContent = "Saving your request…";
+
+            try {
+                const formData = new FormData(aiForm);
+                const res = await fetch(aiForm.action, {
+                    method: "POST",
+                    body: formData,
+                    headers: { "Accept": "application/json" }
+                });
+
+                if (res.ok) {
+                    aiStatus.textContent = "Saved. You can also send it via WhatsApp for faster response.";
+                    aiForm.reset();
+                } else {
+                    aiStatus.textContent = "Something went wrong saving the request. Please use WhatsApp.";
+                }
+            } catch (err) {
+                aiStatus.textContent = "Network error. Please use WhatsApp.";
+            }
+        });
+    </script>
 
 </body>
 

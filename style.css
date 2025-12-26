@@ -1434,6 +1434,249 @@ img {
     width: 100%;
     margin: 0 auto;
     /* ← Esto lo centra dentro del contenedor */
-
 }
-background-image: url("fondo.png");
+
+/* ===== AI Quick Assistant (no backend) ===== */
+.ai-fab {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 9999;
+    border: none;
+    cursor: pointer;
+    padding: 12px 14px;
+    border-radius: 999px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* Make the AI button match your orange style */
+.ai-fab {
+    background: #f4a300;
+    color: #ffffff;
+}
+
+.ai-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: none;
+}
+
+.ai-modal.is-open {
+    display: block;
+}
+
+.ai-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.ai-modal__panel {
+    position: absolute;
+    right: 18px;
+    bottom: 76px;
+    width: min(420px, calc(100% - 36px));
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+    padding: 14px 14px 12px;
+}
+
+.ai-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.ai-modal__header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.ai-close {
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.ai-subtitle {
+    margin: 0 0 10px;
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+.ai-form {
+    display: grid;
+    gap: 10px;
+}
+
+.ai-label {
+    display: grid;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ai-input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    font: inherit;
+    font-size: 14px;
+}
+
+.ai-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.ai-btn {
+    width: 100%;
+    justify-content: center;
+}
+
+.ai-status {
+    margin: 6px 0 0;
+    font-size: 13px;
+}
+
+/* ==========================
+   FLOATING BUTTONS FIX (FINAL)
+   WhatsApp: bottom-right
+   Ask AI:   bottom-left
+   Both: green
+   ========================== */
+
+/* 1) WhatsApp button (bottom-right) */
+.whatsapp-float {
+    position: fixed;
+    width: 65px;
+    height: 65px;
+    right: 25px;
+    bottom: 25px;
+    background-color: #25D366;
+    /* WhatsApp green */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.30);
+    z-index: 9998;
+    /* keep below AI modal if needed */
+    transition: transform 0.2s ease-in-out;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.08);
+}
+
+.whatsapp-icon {
+    width: 40px;
+    height: 40px;
+}
+
+/* 2) Ask AI floating button (bottom-left) */
+.ai-fab {
+    position: fixed;
+    left: 25px;
+    /* ⬅️ move to left */
+    right: auto;
+    /* ⬅️ cancel right */
+    bottom: 25px;
+    /* align with WhatsApp */
+    z-index: 9999;
+    border: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    background: #25D366;
+    /* green */
+    color: #ffffff;
+}
+
+.ai-fab:hover {
+    filter: brightness(0.95);
+}
+
+/* 3) AI modal container */
+.ai-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    /* above both buttons */
+    display: none;
+}
+
+.ai-modal.is-open {
+    display: block;
+}
+
+.ai-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+/* 4) AI panel (opens from bottom-left, not right) */
+.ai-modal__panel {
+    position: absolute;
+    left: 18px;
+    /* ⬅️ open near Ask AI */
+    right: auto;
+    /* ⬅️ cancel right */
+    bottom: 100px;
+    /* ⬅️ above Ask AI button */
+    width: min(420px, calc(100% - 36px));
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+    padding: 14px 14px 12px;
+}
+
+/* 5) Make AI primary button in modal also green */
+.ai-btn.orange-btn,
+.ai-btn {
+    background: #25D366 !important;
+    border: 2px solid #25D366 !important;
+    color: #ffffff !important;
+}
+
+.ai-btn:hover {
+    filter: brightness(0.95);
+}
+
+@media (max-width: 480px) {
+    .whatsapp-float {
+        right: 16px;
+        bottom: 16px;
+        width: 58px;
+        height: 58px;
+    }
+
+    .ai-fab {
+        left: 16px;
+        bottom: 16px;
+    }
+
+    .whatsapp-icon {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+.ai-modal__panel {
+    margin-bottom: 6px;
+}
+
+<a class="whatsapp-float" aria-label="Chat on WhatsApp" ...>...</a><button class="ai-fab" aria-label="Ask AI assistant" ...>Ask AI</button>
