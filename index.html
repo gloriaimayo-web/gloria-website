@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>G&L Services Group</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+    <!-- TOP NAVIGATION MENU -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="logo.png" alt="logo" class="logo">
+                <span class="company-name">G&L Services Group</span>
+            </div>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="lang-switch">
+                    <a href="index-es.html">ES</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+
+            <h1>CRM and Online Booking Solutions for Local Service Businesses</h1>
+
+            <p>
+                We help salons, spas, mechanics, and service-based businesses manage appointments, customers, and daily
+                operations using simple CRM tools — no license fees required.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="services.html#how-it-works" class="orange-btn">
+                    See How It Works
+                </a>
+                <a href="schedule.html" class="orange-btn">
+                    Book a Free Consultation
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section class="what-we-do tight-section">
+        <h2 class="what-heading">What We Do</h2>
+        <div class="what-columns">
+            <div class="what-left">
+                <p>
+                    At G&L Services Group, we help local businesses simplify daily operations by setting up online
+                    booking systems, customer management tools, and basic automation — without complex software or high
+                    monthly costs.
+                </p>
+            </div>
+            <div class="what-right">
+                <p>Our approach is simple: less complexity, more results.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- FEATURED SERVICES -->
+    <section class="featured-services tight-section">
+        <h2 class="services-heading">Featured Services</h2>
+
+        <div class="services-columns">
+
+            <div class="service-box">
+                <img src="images/icons/icon-calendar.svg" class="service-icon" alt="Calendar Icon">
+                <h3 class="service-title">1️⃣ Appointment Systems</h3>
+                <div class="service-detail">
+                    <p>
+                        We implement professional online booking systems with synchronized calendars, automatic
+                        confirmations,
+                        reminders, and easy agenda management.
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <img src="images/icons/icon-crm.svg" class="service-icon" alt="CRM Icon">
+                <h3 class="service-title">2️⃣ CRM Setup & Customer Management</h3>
+                <div class="service-detail">
+                    <p>
+                        We set up simple CRM tools to help you manage clients, track interactions, and follow up
+                        efficiently —
+                        without expensive software licenses.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="service-box">
+                <img src="images/icons/icon-automation.svg" class="service-icon" alt="Automation Icon">
+                <h3 class="service-title">3️⃣ Process Automation</h3>
+                <div class="service-detail">
+                    <p>
+                        We automate repetitive tasks such as reminders, emails, and internal workflows so you save time
+                        and reduce errors.
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- WHY CHOOSE US -->
+    <section class="why-choose-us tight-section">
+        <h2 class="why-heading">Why Choose Us?</h2>
+        <div class="why-benefits">
+            <ul>
+                <li>Fast results</li>
+                <li>Simple and affordable solutions</li>
+                <li>Personalized support</li>
+                <li>Easy integration with your current tools</li>
+                <li>Save time from day one</li>
+            </ul>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- CALL TO ACTION -->
+    <section class="call-to-action tight-section">
+        <h2>Ready to stop missing appointments and save time?</h2>
+
+        <div class="cta-buttons">
+            <a href="schedule.html" class="orange-btn">
+                Book a Free Consultation
+            </a>
+            <a href="https://wa.me/14376779018?text=Hi%20G&L%20Services%20Group!%20I'd%20like%20to%20book%20a%20free%20consultation."
+                class="orange-btn" onclick="openWhatsApp(event)" rel="noopener">
+                Contact via WhatsApp
+            </a>
+
+            <script>
+                function openWhatsApp(e) {
+                    e.preventDefault();
+
+                    const phone = "14376779018";
+                    const text = "Hi G&L Services Group! I'd like to book a free consultation.";
+                    const encoded = encodeURIComponent(text);
+
+                    window.location.href = `whatsapp://send?phone=${phone}&text=${encoded}`;
+
+                    setTimeout(() => {
+                        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank", "noopener");
+                    }, 600);
+                }
+            </script>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-left">
+            <img src="logo.png" alt="GM CRM Logo" class="footer-logo">
+            <p>G&L Services Group</p>
+            <p>+1 (437) 677-9018</p>
+            <p>contact@glservicesgroup.com</p>
+            <p>Woodbridge, Vaughan<br>Ontario, Canada</p>
+        </div>
+
+        <div class="footer-center">
+            <a href="schedule.html">Schedule a Call</a>
+        </div>
+
+        <div class="footer-right">
+            <p class="footer-title">Follow us:</p>
+            <p>© 2025 G&L Services Group. All rights reserved.</p>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/14376779018?text=Hi%20Gloria!%20I%20would%20like%20more%20information."
+        class="whatsapp-float" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Chat"
+            class="whatsapp-icon">
+    </a>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            console.log("Página cargada correctamente");
+
+            const boxes = document.querySelectorAll('.service-box');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            boxes.forEach(box => observer.observe(box));
+
+        });
+    </script>
+</body>
+
+</html>

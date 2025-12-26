@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Book a Free Consultation - G&L Services Group</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+    <!-- TOP NAVIGATION -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="logo.png" alt="logo" class="logo">
+                <span class="company-name">G&amp;L Services Group</span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="lang-switch">
+                    <a href="schedule-es.html">ES</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero hero-services">
+        <div class="hero-text">
+            <h1>Book a Free Consultation</h1>
+            <p>
+                Let’s talk about your business and see if our online booking
+                and CRM solution is the right fit for you.
+            </p>
+        </div>
+    </section>
+
+    <!-- SCHEDULE CONTENT -->
+    <section class="services-page">
+        <div class="services-container">
+
+            <h2 class="services-title">Get Started</h2>
+
+            <p class="services-intro">
+                Fill out the form below and tell us a bit about your business.
+                We’ll review your needs and contact you within
+                <strong>1 business day</strong>.
+            </p>
+
+            <form action="https://formspree.io/f/xeeqjarv" method="POST" id="contact-form" class="schedule-form">
+                <div class="form-row">
+                    <label class="sr-only" for="name">Your Name</label>
+                    <input id="name" type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-row">
+                    <label class="sr-only" for="phone">Phone</label>
+                    <input id="phone" type="tel" name="phone" placeholder="Phone (optional)" pattern="[0-9+\-\s()]{7,}"
+                        inputmode="tel">
+                </div>
+                <div class="form-row">
+                    <label class="sr-only" for="email">Email</label>
+                    <input id="email" type="email" name="email" placeholder="Email" required>
+                </div>
+                <select name="business_type" required>
+                    <option value="">Type of business *</option>
+                    <option value="Hair salon / Barbershop">Hair salon / Barbershop</option>
+                    <option value="Beauty & wellness">Beauty & wellness (spa, nails, aesthetics)</option>
+                    <option value="Massage therapy">Massage therapy</option>
+                    <option value="Auto repair / Mechanic">Auto repair / Mechanic</option>
+                    <option value="Other service-based business">Other service-based business</option>
+                </select>
+
+                <div class="form-row">
+                    <label class="sr-only" for="message">How can we help?</label>
+                    <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+                </div>
+
+                <button type="submit" class="orange-btn form-submit">Send Request</button>
+            </form>
+
+            <p id="form-success" style="display:none; color:#0a5fd8; font-weight:600; margin-top:15px;">
+                ✅ Thank you! Your request has been sent. We’ll contact you within 1 business day.
+            </p>
+
+
+
+            <!-- TRUST MESSAGE -->
+            <ul class="checklist">
+                <li>Free consultation</li>
+                <li>No obligation</li>
+                <li>Clear next steps</li>
+            </ul>
+
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-left">
+            <img src="logo.png" alt="GM CRM Logo" class="footer-logo">
+            <p>G&amp;L Services Group</p>
+            <p>+1 (437) 677-9018</p>
+            <p>contact@glservicesgroup.com</p>
+            <p>Woodbridge, Vaughan<br>Ontario, Canada</p>
+        </div>
+
+        <div class="footer-center">
+            <a href="schedule.html">Schedule a Call</a>
+        </div>
+
+        <div class="footer-right">
+            <p>© 2025 G&amp;L Services Group. All rights reserved.</p>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+    </footer>
+    <script>
+        const form = document.getElementById('contact-form');
+        const successMessage = document.getElementById('form-success');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const data = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    form.reset();
+                    successMessage.style.display = 'block';
+                } else {
+                    alert("Something went wrong. Please try again.");
+                }
+            });
+        });
+    </script>
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/14376779018?text=Hi%20Gloria!%20I%20would%20like%20more%20information."
+        class="whatsapp-float" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Chat"
+            class="whatsapp-icon">
+    </a>
+
+</body>
+
+</html>

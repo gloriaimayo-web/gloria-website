@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>G&L Services Group</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- TOP NAVIGATION MENU -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="logo.png" alt="logo" class="logo">
+                <span class="company-name">G&L Services Group</span>
+            </div>
+
+            <ul>
+                <li><a href="index-es.html">Inicio</a></li>
+                <li><a href="services-es.html">Servicios</a></li>
+                <li><a href="contact-es.html">Contacto</a></li>
+                <li><a href="about-es.html">Sobre Nosotros</a></li>
+
+                <!-- LANGUAGE SWITCH BUTTON -->
+                <li class="lang-switch">
+                    <a href="index.html">EN</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+
+            <h1>Soluciones de CRM y Reservas Online para Negocios Locales</h1>
+
+            <p>
+                Ayudamos a salones, spas, mecánicos y negocios de servicios a gestionar citas, clientes y operaciones
+                diarias utilizando herramientas CRM simples — sin tarifas de licencia.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="services-es.html#how-it-works" class="orange-btn">
+                    Ver Cómo Funciona
+                </a>
+                <a href="schedule-es.html" class="orange-btn">
+                    Agenda una Consulta Gratis
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section class="what-we-do tight-section">
+        <h2 class="what-heading">Qué Hacemos</h2>
+        <div class="what-columns">
+            <div class="what-left">
+                <p>
+                    En G&L Services Group ayudamos a negocios locales a simplificar sus operaciones diarias mediante la
+                    implementación de sistemas de reservas online, herramientas de gestión de clientes y
+                    automatizaciones
+                    básicas — sin software complejo ni altos costos mensuales.
+                </p>
+            </div>
+            <div class="what-right">
+                <p>Nuestro enfoque es simple: menos complejidad, más resultados.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- FEATURED SERVICES -->
+    <section class="featured-services tight-section">
+        <h2 class="services-heading">Servicios Destacados</h2>
+
+        <div class="services-columns">
+
+            <div class="service-row">
+                <h3 class="service-title">1️⃣ Sistemas de Citas</h3>
+                <div class="service-detail">
+                    <p>
+                        Implementamos sistemas profesionales de reservas online con calendarios sincronizados,
+                        confirmaciones automáticas, recordatorios y gestión sencilla de agenda.
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-row">
+                <h3 class="service-title">2️⃣ Configuración de CRM y Gestión de Clientes</h3>
+                <div class="service-detail">
+                    <p>
+                        Configuramos herramientas CRM simples para ayudarte a gestionar clientes, registrar
+                        interacciones
+                        y hacer seguimiento eficiente — sin licencias costosas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-row">
+                <h3 class="service-title">3️⃣ Automatización de Procesos</h3>
+                <div class="service-detail">
+                    <p>
+                        Automatizamos tareas repetitivas como recordatorios, correos y flujos internos para que ahorres
+                        tiempo y reduzcas errores.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- WHY CHOOSE US -->
+    <section class="why-choose-us tight-section">
+        <h2 class="why-heading">¿Por Qué Elegirnos?</h2>
+        <div class="why-benefits">
+            <ul>
+                <li>Resultados rápidos</li>
+                <li>Soluciones simples y accesibles</li>
+                <li>Soporte personalizado</li>
+                <li>Integración fácil con tus herramientas actuales</li>
+                <li>Ahorro de tiempo desde el primer día</li>
+            </ul>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- CALL TO ACTION -->
+    <section class="call-to-action tight-section">
+        <h2>¿Lista para dejar de perder citas y ahorrar tiempo?</h2>
+
+        <div class="cta-buttons">
+            <a href="schedule-es.html" class="orange-btn">
+                Agenda una Consulta Gratis
+            </a>
+            <a href="https://wa.me/14376779018?text=Hola%20Gloria,%20quiero%20más%20información." class="orange-btn"
+                onclick="openWhatsApp(event)" rel="noopener">
+                Contactar por WhatsApp
+            </a>
+
+            <script>
+                function openWhatsApp(e) {
+                    e.preventDefault();
+
+                    const phone = "14376779018";
+                    const text = "Hola Gloria, quiero más información.";
+                    const encoded = encodeURIComponent(text);
+
+                    window.location.href = `whatsapp://send?phone=${phone}&text=${encoded}`;
+
+                    setTimeout(() => {
+                        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank", "noopener");
+                    }, 600);
+                }
+            </script>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-left">
+            <img src="logo.png" alt="GM CRM Logo" class="footer-logo">
+            <p>G&L Services Group</p>
+            <p>+1 (437) 677-9018</p>
+            <p>contact@glservicesgroup.com</p>
+            <p>Woodbridge, Vaughan<br>Ontario, Canadá</p>
+        </div>
+
+        <div class="footer-center">
+            <a href="schedule-es.html">Agendar Llamada</a>
+        </div>
+
+        <div class="footer-right">
+            <p class="footer-title">Síguenos:</p>
+            <p>© 2025 G&L Services Group. Todos los derechos reservados.</p>
+            <a href="privacy.html">Política de Privacidad</a>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/14376779018?text=Hola%20Gloria,%20quiero%20más%20información." class="whatsapp-float"
+        target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Chat"
+            class="whatsapp-icon">
+    </a>
+
+</body>
+
+</html>
