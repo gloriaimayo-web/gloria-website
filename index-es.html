@@ -137,7 +137,7 @@
 
         /* GL CHATBOT WIDGET */
         .gl-chat-fab {
-            position: fixed; right: 24px; bottom: 100px;
+            position: fixed; left: 24px; bottom: 24px;
             width: 56px; height: 56px; border-radius: 50%;
             overflow: hidden; border: 2px solid white; padding: 0; background: white;
             box-shadow: 0 4px 12px rgba(0,0,0,0.25); z-index: 9998;
@@ -146,7 +146,7 @@
         .gl-chat-fab:hover { transform: scale(1.08); }
         .gl-chat-fab img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .gl-chat-panel {
-            position: fixed; right: 24px; bottom: 168px;
+            position: fixed; left: 24px; bottom: 92px;
             width: min(360px, calc(100% - 48px));
             height: min(480px, calc(100% - 220px));
             background: white; border-radius: 12px;
@@ -444,83 +444,6 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
 </a>
 
-<button id="aiFab" class="ai-fab">Preguntar IA</button>
-
-<div id="aiModal" class="ai-modal" aria-hidden="true">
-    <div class="ai-modal__backdrop" id="aiBackdrop"></div>
-    <div class="ai-modal__panel">
-        <div class="ai-modal__header">
-            <h3>Asistente Rápido</h3>
-            <button id="aiClose" class="ai-close">×</button>
-        </div>
-        <p class="ai-subtitle">Responde unas preguntas y prepararemos un mensaje de WhatsApp.</p>
-        <form id="aiForm" class="ai-form" action="https://formspree.io/f/xeeqjarv" method="POST">
-            <input type="hidden" name="source" value="AI Assistant ES">
-            <label class="ai-label">Tu nombre<input class="ai-input" type="text" name="name" placeholder="Nombre completo" required></label>
-            <label class="ai-label">Email<input class="ai-input" type="email" name="email" placeholder="tu@email.com" required></label>
-            <label class="ai-label">Tipo de negocio
-                <select class="ai-input" name="business_type" required>
-                    <option value="" disabled selected>Selecciona uno…</option>
-                    <option>Salón de cabello / Barbería</option>
-                    <option>Belleza / Spa</option>
-                    <option>Masajes / Bienestar</option>
-                    <option>Mecánica / Autos</option>
-                    <option>Costura / Alteraciones</option>
-                    <option>Servicios de limpieza</option>
-                    <option>Otro</option>
-                </select>
-            </label>
-            <label class="ai-label">¿Qué necesitas?
-                <select class="ai-input" name="need_help" required>
-                    <option value="" disabled selected>Selecciona uno…</option>
-                    <option>Página de reservas + calendario</option>
-                    <option>CRM de clientes</option>
-                    <option>Automatización y recordatorios</option>
-                    <option>No estoy seguro — necesito orientación</option>
-                </select>
-            </label>
-            <label class="ai-label">Mensaje<textarea class="ai-input" name="message" rows="3" placeholder="Cuéntanos sobre tu negocio…" required></textarea></label>
-            <div class="ai-actions">
-                <button type="button" id="aiWA" class="ai-btn-primary">Enviar por WhatsApp</button>
-                <button type="submit" class="ai-btn-outline">Guardar Solicitud</button>
-            </div>
-            <p id="aiStatus" class="ai-status" style="display:none;"></p>
-        </form>
-    </div>
-</div>
-
-<script>
-const aiFab = document.getElementById('aiFab');
-const aiModal = document.getElementById('aiModal');
-const aiClose = document.getElementById('aiClose');
-const aiBackdrop = document.getElementById('aiBackdrop');
-const aiForm = document.getElementById('aiForm');
-const aiWA = document.getElementById('aiWA');
-const aiStatus = document.getElementById('aiStatus');
-const WA = "14376779018";
-function openModal() { aiModal.classList.add('is-open'); aiModal.setAttribute('aria-hidden','false'); }
-function closeModal() { aiModal.classList.remove('is-open'); aiModal.setAttribute('aria-hidden','true'); }
-aiFab.addEventListener('click', openModal);
-aiClose.addEventListener('click', closeModal);
-aiBackdrop.addEventListener('click', closeModal);
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
-aiWA.addEventListener('click', () => {
-    if(!aiForm.checkValidity()) { aiForm.reportValidity(); return; }
-    const d = new FormData(aiForm);
-    const msg = `Hola G&L Services Group!\nNombre: ${d.get('name')}\nEmail: ${d.get('email')}\nNegocio: ${d.get('business_type')}\nNecesito: ${d.get('need_help')}\n\n${d.get('message')}`;
-    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
-});
-aiForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    aiStatus.style.display = 'block';
-    aiStatus.textContent = 'Guardando...';
-    try {
-        const res = await fetch(aiForm.action, {method:'POST', body: new FormData(aiForm), headers:{Accept:'application/json'}});
-        aiStatus.textContent = res.ok ? '✓ ¡Guardado! Te contactaremos pronto.' : 'Error. Por favor usa WhatsApp.';
-        if(res.ok) aiForm.reset();
-    } catch { aiStatus.textContent = 'Error. Por favor usa WhatsApp.'; }
-});
-</script>
 
 <!-- GL CHATBOT WIDGET -->
 <button id="glChatFab" class="gl-chat-fab" aria-label="Abrir chat">
