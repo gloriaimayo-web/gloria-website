@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuestros Servicios - G&L Services Group</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', 'Segoe UI', sans-serif; color: #1a1a1a; background: #fff; }
+        .ms-nav { background: #0078D4; padding: 0 40px; position: sticky; top: 0; z-index: 1000; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+        .ms-nav .logo-area { display: flex; align-items: center; gap: 10px; }
+        .ms-nav .logo { height: 60px; width: auto; filter: drop-shadow(0 0 8px rgba(255,255,255,0.4)); }
+        .ms-nav .company-name { color: white; font-size: 18px; font-weight: 700; border-left: 1px solid rgba(255,255,255,0.4); padding-left: 12px; margin-left: 4px; }
+        .ms-nav ul { list-style: none; display: flex; gap: 4px; }
+        .ms-nav ul li a { color: rgba(255,255,255,0.9); text-decoration: none; font-size: 14px; padding: 6px 12px; border-radius: 4px; transition: background 0.15s; }
+        .ms-nav ul li a:hover { background: rgba(255,255,255,0.15); color: white; }
+        .ms-nav .lang-switch a { border: 1px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 4px 10px; font-size: 13px; font-weight: 600; }
+        .ms-hero-page { background: linear-gradient(135deg, #0078D4 0%, #005A9E 60%); padding: 60px 40px; text-align: center; }
+        .ms-hero-page h1 { font-size: 2.2rem; font-weight: 700; color: white; margin-bottom: 12px; }
+        .ms-hero-page p { font-size: 1.05rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto 24px; line-height: 1.6; }
+        .btn-ms { display: inline-block; background: white; color: #0078D4; padding: 12px 24px; border-radius: 4px; font-weight: 600; font-size: 15px; text-decoration: none; transition: background 0.15s; }
+        .btn-ms:hover { background: #f0f0f0; }
+        .page-content { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+        .page-content h2 { font-size: 1.6rem; font-weight: 700; color: #0078D4; margin-bottom: 16px; }
+        .page-content h3 { font-size: 1.1rem; font-weight: 700; color: #1a1a1a; margin: 24px 0 10px; }
+        .page-content p { font-size: 0.95rem; color: #444; line-height: 1.7; margin-bottom: 12px; }
+        .page-content ul { padding-left: 20px; margin-bottom: 16px; }
+        .page-content ul li { font-size: 0.95rem; color: #444; line-height: 1.8; }
+        .page-content a { color: #0078D4; }
+        .contact-details { background: #F8F8F8; border-radius: 8px; padding: 24px; margin: 24px 0; }
+        .contact-details p { margin-bottom: 10px; font-size: 1rem; }
+        .contact-details a { color: #0078D4; font-weight: 600; text-decoration: none; }
+        .ms-footer { background: #1a1a1a; padding: 40px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+        .ms-footer .footer-col p, .ms-footer .footer-col a { color: #aaa; font-size: 13px; line-height: 2; text-decoration: none; display: block; }
+        .ms-footer .footer-col a:hover { color: white; }
+        .ms-footer .footer-col .footer-logo { height: 40px; width: auto; margin-bottom: 12px; filter: brightness(0) invert(1); opacity: 0.8; }
+        .ms-footer .footer-col .company { color: white; font-weight: 600; font-size: 14px; }
+        .ms-footer .footer-bottom { width: 100%; border-top: 1px solid #333; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .ms-footer .footer-bottom p, .ms-footer .footer-bottom a { color: #666; font-size: 12px; text-decoration: none; }
+        .whatsapp-float { position: fixed; width: 56px; height: 56px; right: 24px; bottom: 24px; background: #25D366; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9998; transition: transform 0.2s; }
+        .whatsapp-float:hover { transform: scale(1.08); }
+        .whatsapp-icon { width: 32px; height: 32px; }
+        .ai-fab { position: fixed; left: 24px; bottom: 24px; background: #0078D4; color: white; border: none; cursor: pointer; padding: 10px 16px; border-radius: 20px; font-weight: 600; font-size: 13px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; }
+        @media (max-width: 768px) { .ms-nav { padding: 0 16px; } .ms-nav .company-name { display: none; } .page-content { padding: 40px 20px; } }
+    </style>
+</head>
+<body>
+
+<nav class="ms-nav">
+    <div class="logo-area">
+        <img src="logo.png" alt="G&amp;L Services Group" class="logo">
+        <span class="company-name">G&amp;L Services Group</span>
+    </div>
+    <ul>
+        <li><a href="index-es.html">Inicio</a></li>
+        <li><a href="services-es.html">Servicios</a></li>
+        <li><a href="contact-es.html">Contacto</a></li>
+        <li><a href="about-es.html">Nosotros</a></li>
+        <li class="lang-switch"><a href="services.html">EN</a></li>
+    </ul>
+</nav>
+
+<section class="ms-hero-page">
+    <h1>Nuestros Servicios</h1>
+    <p>Soluciones profesionales de CRM y reservas para negocios de servicios locales.</p>
+    <a href="schedule-es.html" class="btn-ms">Consulta Gratuita</a>
+</section>
+
+<div class="page-content">
+<!-- PAGE CONTENT -->
+    <section class="services-page tight-section">
+        <div class="services-container">
+
+            <h1 class="services-title">👉 Nuestro Servicio Principal</h1>
+            <h2 class="services-subtitle">Sitio Web de Reservas + Configuración de CRM</h2>
+
+            <p class="services-intro">
+                Ofrecemos una solución completa y centralizada para negocios locales.
+                Creamos un sitio profesional donde tus clientes pueden reservar online, y cada reserva se conecta
+                automáticamente con un CRM simple que te permite gestionar clientes y horarios desde un solo lugar.
+            </p>
+
+            <!-- INCLUDED -->
+            <h3 class="services-section-title" id="included">1️⃣ Qué incluye</h3>
+            <ul class="service-checklist">
+                <li>Sitio web profesional de una sola página</li>
+                <li>Reservas online</li>
+                <li>Confirmaciones y recordatorios automáticos</li>
+                <li>Sincronización con calendario</li>
+                <li>Sistema de gestión de clientes (CRM)</li>
+                <li>Automatizaciones básicas para notificaciones y seguimientos</li>
+            </ul>
+
+            <!-- HOW IT WORKS -->
+            <h3 id="how-it-works" class="services-section-title">2️⃣ Cómo funciona</h3>
+            <ul class="service-checklist">
+                <li>Tu cliente visita tu sitio de reservas</li>
+                <li>Elige un servicio y agenda una cita</li>
+                <li>La cita se guarda automáticamente en el CRM</li>
+                <li>Gestionas todo desde un solo sistema</li>
+            </ul>
+
+            <!-- WHO IT'S FOR -->
+            <h3 class="services-section-title">3️⃣ Para quién es este servicio</h3>
+            <ul class="service-checklist">
+                <li>Peluquerías y barberías</li>
+                <li>Negocios de belleza y bienestar</li>
+                <li>Terapeutas de masaje y spas</li>
+                <li>Talleres mecánicos</li>
+                <li>Cualquier negocio local basado en citas</li>
+            </ul>
+
+            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 32px 0;">
+                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+                    <img src="images/service-barber.png" alt="Servicio para barberías" style="width:100%; height:220px; object-fit:cover; display:block;">
+                    <div style="padding: 14px 16px; background: #F8F8F8; border-top: 3px solid #0078D4;">
+                        <p style="font-weight:700; font-size:0.9rem; color:#1a1a1a; margin:0;">Salones & Barberías</p>
+                        <p style="font-size:0.82rem; color:#666; margin:4px 0 0;">Reservas en línea + CRM para negocios de citas</p>
+                    </div>
+                </div>
+                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+                    <img src="images/service-mechanic.png" alt="Servicio para talleres mecánicos" style="width:100%; height:220px; object-fit:cover; display:block;">
+                    <div style="padding: 14px 16px; background: #F8F8F8; border-top: 3px solid #0078D4;">
+                        <p style="font-weight:700; font-size:0.9rem; color:#1a1a1a; margin:0;">Mecánicas & Talleres</p>
+                        <p style="font-size:0.82rem; color:#666; margin:4px 0 0;">Agenda reparaciones y gestiona vehículos de clientes</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="main-benefit-title">👉 Beneficio principal</h3>
+            <p class="service-benefit">
+                Tus clientes reservan online por sí mismos, y
+                <strong>tú gestionas todo desde un solo sistema</strong>.
+            </p>
+
+            <!-- CTA -->
+            <div class="service-cta">
+                <p><strong>🟡 ¿No estás segura si este sistema es adecuado para tu negocio?</strong></p>
+                <a href="schedule-es.html" class="orange-btn">Agendar Consulta Gratis</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+</div>
+
+<footer class="ms-footer">
+    <div class="footer-col">
+        <img src="logo.png" alt="G&L Services Group" class="footer-logo">
+        <span class="company">G&L Services Group</span>
+        <p>+1 (437) 677-9018</p>
+        <p>contact@glservicesgroup.com</p>
+        <p>Woodbridge, Vaughan, Ontario, Canadá</p>
+    </div>
+    <div class="footer-col">
+        <span class="company" style="margin-bottom:8px;display:block;">Enlaces</span>
+        <a href="services-es.html">Servicios</a>
+        <a href="about-es.html">Nosotros</a>
+        <a href="contact-es.html">Contacto</a>
+        <a href="schedule-es.html">Agendar Llamada</a>
+        <a href="privacy-es.html">Política de Privacidad</a>
+    </div>
+    <div class="footer-col">
+        <span class="company" style="margin-bottom:8px;display:block;">Pilotos</span>
+        <a href="https://vaughansewing.ca" target="_blank">Vaughan Sewing ↗</a>
+        <a href="index.html">English</a>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 G&L Services Group. Todos los derechos reservados.</p>
+        <a href="privacy-es.html">Política de Privacidad</a>
+    </div>
+</footer>
+<a href="https://wa.me/14376779018?text=Hola!" class="whatsapp-float" target="_blank" rel="noopener">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+</a>
+
+</body>
+</html>

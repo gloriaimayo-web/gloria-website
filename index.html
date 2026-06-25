@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>G&L Services Group — CRM & Booking Solutions for Local Businesses</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="G&L Services Group helps salons, spas, and service businesses manage appointments, customers, and operations with simple CRM tools. No license fees.">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', 'Segoe UI', sans-serif; color: #1a1a1a; background: #fff; }
+
+        /* NAV */
+        .ms-nav {
+            background: #0078D4;
+            padding: 0 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ms-nav .logo-area { display: flex; align-items: center; gap: 10px; }
+        .ms-nav .logo { height: 60px; width: auto; filter: drop-shadow(0 0 8px rgba(255,255,255,0.4)); }
+        .ms-nav .company-name { color: white; font-size: 18px; font-weight: 700; letter-spacing: 0.3px; border-left: 1px solid rgba(255,255,255,0.4); padding-left: 12px; margin-left: 4px; }
+        .ms-nav ul { list-style: none; display: flex; gap: 4px; }
+        .ms-nav ul li a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .ms-nav ul li a:hover { background: rgba(255,255,255,0.15); color: white; }
+        .ms-nav .lang-switch a {
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* HERO */
+        .ms-hero {
+            background: linear-gradient(135deg, #0078D4 0%, #005A9E 50%, #50C0E0 100%);
+            padding: 80px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            min-height: 480px;
+        }
+        .ms-hero-left { flex: 1; max-width: 560px; }
+        .ms-hero-left .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .ms-hero-left h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .ms-hero-left h1 span { color: #FFB900; }
+        .ms-hero-left p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        .ms-hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn-primary-hero {
+            background: white;
+            color: #0078D4;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+        .btn-primary-hero:hover { background: #f0f0f0; }
+        .btn-secondary-hero {
+            background: transparent;
+            color: white;
+            border: 1.5px solid white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+        .btn-secondary-hero:hover { background: rgba(255,255,255,0.15); }
+        .ms-hero-right { flex: 1; max-width: 520px; }
+
+        /* VIDEO PLACEHOLDER */
+        .video-placeholder {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .video-placeholder .play-btn {
+            width: 64px;
+            height: 64px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            transition: transform 0.2s;
+        }
+        .video-placeholder:hover .play-btn { transform: scale(1.1); }
+        .video-placeholder .play-btn::after {
+            content: '';
+            border-left: 22px solid #0078D4;
+            border-top: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+            margin-left: 5px;
+        }
+        .video-placeholder p { color: white; font-size: 14px; opacity: 0.9; }
+        .video-placeholder .video-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        /* STATS BAR */
+        .stats-bar {
+            background: #F2F2F2;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #ddd;
+        }
+        .stat-item { text-align: center; }
+        .stat-item .num { font-size: 1.8rem; font-weight: 700; color: #0078D4; }
+        .stat-item .label { font-size: 13px; color: #666; margin-top: 2px; }
+
+        /* SECTION BASE */
+        .ms-section { padding: 72px 40px; }
+        .ms-section-alt { background: #F8F8F8; }
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #0078D4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: #555;
+            max-width: 580px;
+            line-height: 1.6;
+            margin-bottom: 48px;
+        }
+        .center { text-align: center; }
+        .center .section-subtitle { margin: 0 auto 48px; }
+
+        /* SERVICES GRID */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 32px 28px;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+        .service-card:hover {
+            box-shadow: 0 4px 20px rgba(0,120,212,0.12);
+            border-color: #0078D4;
+        }
+        .service-card .icon-wrap {
+            width: 48px;
+            height: 48px;
+            background: #E6F1FB;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .service-card .icon-wrap img { width: 28px; height: 28px; }
+        .service-card h3 { font-size: 1.05rem; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; }
+        .service-card p { font-size: 0.9rem; color: #555; line-height: 1.6; }
+        .service-card .learn-more {
+            display: inline-block;
+            margin-top: 16px;
+            color: #0078D4;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .service-card .learn-more:hover { text-decoration: underline; }
+
+        /* HOW IT WORKS */
+        .steps-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .steps-row::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: 12%;
+            right: 12%;
+            height: 2px;
+            background: #0078D4;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        .step-item { text-align: center; position: relative; z-index: 1; }
+        .step-circle {
+            width: 56px;
+            height: 68px;
+            background: #0078D4;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+        .step-item h3 { font-size: 0.95rem; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+        .step-item p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+
+        /* PILOTS */
+        .pilots-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .pilot-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 32px 28px;
+            transition: box-shadow 0.2s;
+        }
+        .pilot-card:hover { box-shadow: 0 4px 20px rgba(0,120,212,0.12); }
+        .pilot-card.coming { border: 1px dashed #FFB900; background: #FFFBF0; }
+        .pilot-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .pilot-badge.live { background: #DFF6DD; color: #107C10; }
+        .pilot-badge.soon { background: #FFF4CE; color: #835B00; }
+        .pilot-card h3 { font-size: 1.1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+        .pilot-card p { font-size: 0.9rem; color: #555; margin-bottom: 14px; line-height: 1.5; }
+        .pilot-results { list-style: none; margin-bottom: 20px; }
+        .pilot-results li { font-size: 0.85rem; color: #444; padding: 3px 0; }
+        .pilot-results li::before { content: "✓ "; color: #107C10; font-weight: 700; }
+        .btn-ms {
+            display: inline-block;
+            background: #0078D4;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+        .btn-ms:hover { background: #005A9E; }
+        .btn-ms-outline {
+            display: inline-block;
+            background: transparent;
+            color: #0078D4;
+            border: 1.5px solid #0078D4;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+        .btn-ms-outline:hover { background: #E6F1FB; }
+
+        /* PRICING */
+        .pricing-section {
+            background: #F2F2F2;
+            padding: 72px 40px;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 32px 28px;
+        }
+        .pricing-card.featured {
+            border: 2px solid #0078D4;
+            position: relative;
+        }
+        .popular-tag {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0078D4;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .pricing-card h3 { font-size: 1rem; font-weight: 700; color: #555; margin-bottom: 8px; }
+        .pricing-price { font-size: 2.2rem; font-weight: 700; color: #1a1a1a; margin: 8px 0 4px; }
+        .pricing-price span { font-size: 0.9rem; font-weight: 400; color: #888; }
+        .pricing-desc { font-size: 0.85rem; color: #666; margin-bottom: 20px; line-height: 1.5; }
+        .pricing-features { list-style: none; margin-bottom: 24px; }
+        .pricing-features li { font-size: 0.85rem; color: #444; padding: 5px 0; border-bottom: 1px solid #f0f0f0; }
+        .pricing-features li::before { content: "✓  "; color: #0078D4; font-weight: 700; }
+        .pricing-note {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* WHY */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .why-item {
+            padding: 24px;
+            border-left: 3px solid #0078D4;
+            background: white;
+            border-radius: 0 8px 8px 0;
+        }
+        .why-item h3 { font-size: 0.95rem; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+        .why-item p { font-size: 0.85rem; color: #555; line-height: 1.5; }
+
+        /* CTA */
+        .ms-cta {
+            background: #0078D4;
+            padding: 64px 40px;
+            text-align: center;
+        }
+        .ms-cta h2 { font-size: 1.8rem; font-weight: 700; color: white; margin-bottom: 12px; }
+        .ms-cta p { color: rgba(255,255,255,0.9); margin-bottom: 32px; font-size: 1.05rem; }
+        .ms-cta .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+        /* FOOTER */
+        .ms-footer {
+            background: #1a1a1a;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        .ms-footer .footer-col p, .ms-footer .footer-col a { color: #aaa; font-size: 13px; line-height: 2; text-decoration: none; display: block; }
+        .ms-footer .footer-col a:hover { color: white; }
+        .ms-footer .footer-col .footer-logo { height: 40px; width: auto; margin-bottom: 12px; filter: brightness(0) invert(1); opacity: 0.8; }
+        .ms-footer .footer-col .company { color: white; font-weight: 600; font-size: 14px; }
+        .ms-footer .footer-bottom { width: 100%; border-top: 1px solid #333; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .ms-footer .footer-bottom p { color: #666; font-size: 12px; }
+        .ms-footer .footer-bottom a { color: #666; font-size: 12px; text-decoration: none; }
+        .ms-footer .footer-bottom a:hover { color: #aaa; }
+
+        /* FLOAT BUTTONS */
+        .whatsapp-float {
+            position: fixed; width: 56px; height: 68px;
+            right: 24px; bottom: 24px;
+            background: #25D366; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9998;
+            transition: transform 0.2s;
+        }
+        .whatsapp-float:hover { transform: scale(1.08); }
+        .whatsapp-icon { width: 32px; height: 32px; }
+        .ai-fab {
+            position: fixed; left: 24px; bottom: 24px;
+            background: #0078D4; color: white;
+            border: none; cursor: pointer;
+            padding: 10px 16px; border-radius: 20px;
+            font-weight: 600; font-size: 13px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999;
+        }
+        .ai-fab:hover { background: #005A9E; }
+
+        /* AI MODAL */
+        .ai-modal { position: fixed; inset: 0; z-index: 10000; display: none; }
+        .ai-modal.is-open { display: block; }
+        .ai-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+        .ai-modal__panel {
+            position: absolute; left: 18px; bottom: 80px;
+            width: min(400px, calc(100% - 36px));
+            background: white; border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            padding: 20px;
+        }
+        .ai-modal__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .ai-modal__header h3 { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+        .ai-close { border: none; background: transparent; font-size: 20px; cursor: pointer; color: #666; }
+        .ai-subtitle { font-size: 12px; color: #666; margin-bottom: 12px; }
+        .ai-form { display: grid; gap: 8px; }
+        .ai-label { display: grid; gap: 4px; font-size: 12px; font-weight: 600; color: #333; }
+        .ai-input { padding: 8px 12px; border-radius: 4px; border: 1px solid #ddd; font-size: 13px; font-family: inherit; }
+        .ai-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+        .ai-btn-primary { background: #0078D4; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: 600; font-size: 13px; cursor: pointer; }
+        .ai-btn-outline { background: transparent; color: #0078D4; border: 1px solid #0078D4; padding: 10px; border-radius: 4px; font-weight: 600; font-size: 13px; cursor: pointer; }
+        .ai-status { font-size: 12px; color: #107C10; margin-top: 8px; }
+
+        @media (max-width: 900px) {
+            .ms-hero { flex-direction: column; padding: 48px 24px; }
+            .ms-hero-left h1 { font-size: 1.8rem; }
+            .ms-hero-right { width: 100%; }
+            .services-grid, .steps-row, .pricing-grid, .why-grid { grid-template-columns: 1fr; }
+            .pilots-grid { grid-template-columns: 1fr; }
+            .stats-bar { gap: 24px; padding: 20px 24px; }
+            .ms-section { padding: 48px 24px; }
+            .ms-nav { padding: 0 16px; }
+            .ms-nav .company-name { display: none; }
+            .steps-row::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="ms-nav">
+    <div class="logo-area">
+        <img src="logo.png" alt="G&L Services Group" class="logo">
+        <span class="company-name">G&L Services Group</span>
+    </div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="lang-switch"><a href="index-es.html">ES</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="ms-hero">
+    <div class="ms-hero-left">
+        <span class="badge">CRM & Booking Solutions</span>
+        <h1>Run your business <span>smarter</span>, not harder</h1>
+        <p>We help salons, spas, mechanics, and service businesses manage appointments, customers, and daily operations — with simple tools and no monthly license fees.</p>
+        <div class="ms-hero-btns">
+            <a href="schedule.html" class="btn-primary-hero">Book Free Consultation</a>
+            <a href="services.html" class="btn-secondary-hero">See How It Works</a>
+        </div>
+    </div>
+    <div class="ms-hero-right">
+        <div class="video-placeholder" onclick="alert('Video coming soon — demo of Appointly CRM in action!')">
+            <div class="play-btn"></div>
+            <p class="video-label">Watch the Demo</p>
+            <p>See Appointly CRM in action — 2 min</p>
+        </div>
+    </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+    <div class="stat-item"><div class="num">2+</div><div class="label">Live Pilot Businesses</div></div>
+    <div class="stat-item"><div class="num">24/7</div><div class="label">Online Booking</div></div>
+    <div class="stat-item"><div class="num">EN/ES</div><div class="label">Bilingual Support</div></div>
+    <div class="stat-item"><div class="num">$0</div><div class="label">Monthly License Fees</div></div>
+</div>
+
+<!-- WHAT WE DO -->
+<section class="ms-section">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Everything your business needs<br>to go digital — in one place</h2>
+    <p class="section-subtitle">We set up, configure, and hand over a complete system so you can manage your business with confidence and simplicity.</p>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="icon-wrap"><img src="images/icon-calendar.svg" alt="Calendar"></div>
+            <h3>Online Appointment Booking</h3>
+            <p>Professional booking page with synchronized calendars, automatic confirmations, reminders, and easy schedule management — all in one place.</p>
+            <a href="services.html" class="learn-more">Learn more →</a>
+        </div>
+        <div class="service-card">
+            <div class="icon-wrap"><img src="images/icon-crm.svg" alt="CRM"></div>
+            <h3>CRM & Customer Management</h3>
+            <p>Track every client, their history, preferences, and follow-ups. No expensive licenses — just a simple system that works for your business.</p>
+            <a href="services.html" class="learn-more">Learn more →</a>
+        </div>
+        <div class="service-card">
+            <div class="icon-wrap"><img src="images/icon-automation.svg" alt="Automation"></div>
+            <h3>Process Automation</h3>
+            <p>Automate reminders, email confirmations, and internal workflows. Save hours every week and reduce errors from day one.</p>
+            <a href="services.html" class="learn-more">Learn more →</a>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="ms-section ms-section-alt">
+    <div style="text-align:center;">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-title">Up and running in 4 simple steps</h2>
+        <p class="section-subtitle" style="margin: 0 auto 48px;">We handle everything — you focus on your business.</p>
+    </div>
+    <div class="steps-row">
+        <div class="step-item">
+            <div class="step-circle">1</div>
+            <h3>Free Consultation</h3>
+            <p>We learn about your business, your needs, and your goals. No commitment required.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-circle">2</div>
+            <h3>Setup & Configuration</h3>
+            <p>We build your booking page, configure the CRM, and set up your automations.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-circle">3</div>
+            <h3>Launch & Training</h3>
+            <p>We launch your system live and train you so you can manage it independently.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-circle">4</div>
+            <h3>Ongoing Support</h3>
+            <p>We stay available for questions, updates, and improvements as you grow.</p>
+        </div>
+    </div>
+</section>
+
+<!-- REAL RESULTS -->
+<section class="ms-section">
+    <div class="section-label">Real Results</div>
+    <h2 class="section-title">Businesses already using our system</h2>
+    <p class="section-subtitle">See what we've built and what your business could look like.</p>
+    <div class="pilots-grid">
+        <div class="pilot-card">
+            <span class="pilot-badge live">✓ Live Pilot</span>
+            <h3>🧵 Vaughan Sewing — Vaughan, Ontario</h3>
+            <p>Alterations & tailoring business. Now takes bookings online 24/7 with automatic confirmations.</p>
+            <ul class="pilot-results">
+                <li>Online booking page live</li>
+                <li>Bilingual AI chatbot (EN/ES)</li>
+                <li>Automatic email confirmations</li>
+                <li>Customer management dashboard</li>
+                <li>QR code for in-store marketing</li>
+            </ul>
+            <a href="https://vaughansewing.ca" target="_blank" class="btn-ms">Visit Live Site →</a>
+        </div>
+        <div class="pilot-card coming">
+            <span class="pilot-badge soon">Coming Soon</span>
+            <h3>💅 Beauty Salon — Medellín, Colombia</h3>
+            <p>Hair & beauty salon currently in setup phase. Spanish-first, WhatsApp-integrated system.</p>
+            <ul class="pilot-results">
+                <li>Online booking page</li>
+                <li>WhatsApp integration</li>
+                <li>Spanish-first AI chatbot</li>
+                <li>Google Calendar sync</li>
+            </ul>
+            <a href="schedule.html" class="btn-ms-outline">Get This for Your Business →</a>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section">
+    <div style="text-align:center;">
+        <div class="section-label">Pricing</div>
+        <h2 class="section-title">Simple, transparent pricing</h2>
+        <p class="section-subtitle" style="margin: 0 auto 48px;">One-time setup fee. You own everything. No monthly subscriptions ever.</p>
+    </div>
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <h3>Starter</h3>
+            <div class="pricing-price">$299 <span>one-time</span></div>
+            <p class="pricing-desc">Perfect for new businesses getting started online.</p>
+            <ul class="pricing-features">
+                <li>Booking page setup</li>
+                <li>Basic CRM configuration</li>
+                <li>Email confirmations</li>
+                <li>WhatsApp button</li>
+                <li>1 month support</li>
+            </ul>
+            <a href="schedule.html" class="btn-ms" style="display:block;text-align:center;">Book Free Consultation</a>
+        </div>
+        <div class="pricing-card featured">
+            <span class="popular-tag">Most Popular</span>
+            <h3>Professional</h3>
+            <div class="pricing-price">$599 <span>one-time</span></div>
+            <p class="pricing-desc">Everything you need to run your business fully digitally.</p>
+            <ul class="pricing-features">
+                <li>Everything in Starter</li>
+                <li>AI Chatbot (EN + ES)</li>
+                <li>Google Calendar sync</li>
+                <li>Customer dashboard</li>
+                <li>QR code for marketing</li>
+                <li>3 months support</li>
+            </ul>
+            <a href="schedule.html" class="btn-ms" style="display:block;text-align:center;">Book Free Consultation</a>
+        </div>
+        <div class="pricing-card">
+            <h3>Custom</h3>
+            <div class="pricing-price" style="font-size:1.6rem;">Let's talk</div>
+            <p class="pricing-desc">For businesses with specific needs or multiple locations.</p>
+            <ul class="pricing-features">
+                <li>Multi-location support</li>
+                <li>Custom integrations</li>
+                <li>Staff management</li>
+                <li>Advanced analytics</li>
+                <li>Priority support</li>
+            </ul>
+            <a href="contact.html" class="btn-ms-outline" style="display:block;text-align:center;">Contact Us</a>
+        </div>
+    </div>
+    <p class="pricing-note">💡 All prices are one-time setup fees. No monthly subscriptions. No license fees. Ever.</p>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="ms-section">
+    <div style="text-align:center;">
+        <div class="section-label">Why G&L Services Group</div>
+        <h2 class="section-title">Built for local businesses,<br>by someone who understands them</h2>
+        <p class="section-subtitle" style="margin: 0 auto 48px;">We don't just sell software — we become your digital assistant.</p>
+    </div>
+    <div class="why-grid">
+        <div class="why-item">
+            <h3>Fast Results</h3>
+            <p>Your system live in days, not months. We move quickly and deliver what we promise.</p>
+        </div>
+        <div class="why-item">
+            <h3>Bilingual Support</h3>
+            <p>Full English and Spanish support — for you and for your customers.</p>
+        </div>
+        <div class="why-item">
+            <h3>You Own Everything</h3>
+            <p>No lock-in, no subscriptions, no dependency. Your system, your data, your business.</p>
+        </div>
+        <div class="why-item">
+            <h3>Simple & Affordable</h3>
+            <p>No complex software or training required. If you can use a smartphone, you can use our system.</p>
+        </div>
+        <div class="why-item">
+            <h3>Personalized Support</h3>
+            <p>We know your business by name. Not a ticket number — a real person who knows your setup.</p>
+        </div>
+        <div class="why-item">
+            <h3>Microsoft-Aligned Tech</h3>
+            <p>Built with enterprise-grade practices — scalable, secure, and ready to grow with your business.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="ms-cta">
+    <h2>Ready to stop missing appointments and save time?</h2>
+    <p>Join the businesses already using Appointly CRM — book your free consultation today.</p>
+    <div class="cta-btns">
+        <a href="schedule.html" class="btn-primary-hero">Book a Free Consultation</a>
+        <a href="https://wa.me/14376779018?text=Hi%20G%26L%20Services%20Group!%20I'd%20like%20to%20book%20a%20free%20consultation." target="_blank" class="btn-secondary-hero">Contact via WhatsApp</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ms-footer">
+    <div class="footer-col">
+        <img src="logo.png" alt="G&L Services Group" class="footer-logo">
+        <span class="company">G&L Services Group</span>
+        <p>+1 (437) 677-9018</p>
+        <p>contact@glservicesgroup.com</p>
+        <p>Woodbridge, Vaughan, Ontario, Canada</p>
+    </div>
+    <div class="footer-col">
+        <span class="company" style="margin-bottom:8px;display:block;">Quick Links</span>
+        <a href="services.html">Services</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="schedule.html">Book a Call</a>
+        <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-col">
+        <span class="company" style="margin-bottom:8px;display:block;">Pilots</span>
+        <a href="https://vaughansewing.ca" target="_blank">Vaughan Sewing ↗</a>
+        <a href="index-es.html">Español</a>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 G&L Services Group. All rights reserved.</p>
+        <a href="privacy.html">Privacy Policy</a>
+    </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/14376779018?text=Hi!%20I'd%20like%20more%20information." class="whatsapp-float" target="_blank" rel="noopener">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+</a>
+
+<!-- ASK AI BUTTON -->
+<button id="aiFab" class="ai-fab">Ask AI</button>
+
+<div id="aiModal" class="ai-modal" aria-hidden="true">
+    <div class="ai-modal__backdrop" id="aiBackdrop"></div>
+    <div class="ai-modal__panel">
+        <div class="ai-modal__header">
+            <h3>Quick Assistant</h3>
+            <button id="aiClose" class="ai-close">×</button>
+        </div>
+        <p class="ai-subtitle">Answer a few questions and we'll prepare a WhatsApp message for you.</p>
+        <form id="aiForm" class="ai-form" action="https://formspree.io/f/xeeqjarv" method="POST">
+            <input type="hidden" name="source" value="AI Assistant">
+            <label class="ai-label">Your name<input class="ai-input" type="text" name="name" placeholder="Full name" required></label>
+            <label class="ai-label">Email<input class="ai-input" type="email" name="email" placeholder="you@email.com" required></label>
+            <label class="ai-label">Type of business
+                <select class="ai-input" name="business_type" required>
+                    <option value="" disabled selected>Select one…</option>
+                    <option>Hair salon / Barber</option>
+                    <option>Beauty / Spa</option>
+                    <option>Massage / Wellness</option>
+                    <option>Mechanic / Auto service</option>
+                    <option>Sewing / Alterations</option>
+                    <option>Cleaning services</option>
+                    <option>Other</option>
+                </select>
+            </label>
+            <label class="ai-label">What do you need?
+                <select class="ai-input" name="need_help" required>
+                    <option value="" disabled selected>Select one…</option>
+                    <option>Online booking page + calendar</option>
+                    <option>CRM setup</option>
+                    <option>Automation & reminders</option>
+                    <option>Not sure — need guidance</option>
+                </select>
+            </label>
+            <label class="ai-label">Message<textarea class="ai-input" name="message" rows="3" placeholder="Tell us about your business…" required></textarea></label>
+            <div class="ai-actions">
+                <button type="button" id="aiWA" class="ai-btn-primary">Send via WhatsApp</button>
+                <button type="submit" class="ai-btn-outline">Save Request</button>
+            </div>
+            <p id="aiStatus" class="ai-status" style="display:none;"></p>
+        </form>
+    </div>
+</div>
+
+<script>
+const aiFab = document.getElementById('aiFab');
+const aiModal = document.getElementById('aiModal');
+const aiClose = document.getElementById('aiClose');
+const aiBackdrop = document.getElementById('aiBackdrop');
+const aiForm = document.getElementById('aiForm');
+const aiWA = document.getElementById('aiWA');
+const aiStatus = document.getElementById('aiStatus');
+const WA = "14376779018";
+
+function openModal() { aiModal.classList.add('is-open'); aiModal.setAttribute('aria-hidden','false'); }
+function closeModal() { aiModal.classList.remove('is-open'); aiModal.setAttribute('aria-hidden','true'); }
+aiFab.addEventListener('click', openModal);
+aiClose.addEventListener('click', closeModal);
+aiBackdrop.addEventListener('click', closeModal);
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+aiWA.addEventListener('click', () => {
+    if(!aiForm.checkValidity()) { aiForm.reportValidity(); return; }
+    const d = new FormData(aiForm);
+    const msg = `Hi G&L Services Group!\nName: ${d.get('name')}\nEmail: ${d.get('email')}\nBusiness: ${d.get('business_type')}\nNeed: ${d.get('need_help')}\n\n${d.get('message')}`;
+    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
+});
+
+aiForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    aiStatus.style.display = 'block';
+    aiStatus.textContent = 'Saving...';
+    try {
+        const res = await fetch(aiForm.action, {method:'POST', body: new FormData(aiForm), headers:{Accept:'application/json'}});
+        aiStatus.textContent = res.ok ? '✓ Saved! We will contact you soon.' : 'Error. Please use WhatsApp.';
+        if(res.ok) aiForm.reset();
+    } catch { aiStatus.textContent = 'Error. Please use WhatsApp.'; }
+});
+</script>
+
+<!-- Chatbot embed placeholder: paste your provider's embed snippet from appointsuite.tech here.
+    Example (replace with the actual code you get from appointsuite.tech):
+    <script src="https://appointsuite.tech/embed.js" async></script>
+    Or a provider-specific HTML block + init script.
+    If you want, share the embed code and I will paste and configure it for you. -->
+
+<div id="chatbot-embed-placeholder" aria-hidden="true" style="display:none;"></div>
+
+</body>
+</html>
