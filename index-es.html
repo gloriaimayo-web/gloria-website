@@ -33,6 +33,9 @@
         .btn-primary-hero:hover { background: #f0f0f0; }
         .btn-secondary-hero { background: transparent; color: white; border: 1.5px solid white; padding: 12px 24px; border-radius: 4px; font-weight: 600; font-size: 15px; text-decoration: none; transition: background 0.15s; }
         .btn-secondary-hero:hover { background: rgba(255,255,255,0.15); }
+        .btn-demo-hero { background: #FFB900; color: #1a1a1a; padding: 12px 24px; border-radius: 4px; font-weight: 600; font-size: 15px; text-decoration: none; transition: transform 0.15s, background 0.15s; animation: demo-pulse 2.2s infinite; }
+        .btn-demo-hero:hover { background: #ffc933; transform: scale(1.05); }
+        @keyframes demo-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,185,0,0.55); } 50% { box-shadow: 0 0 0 9px rgba(255,185,0,0); } }
         .ms-hero-right { flex: 1; max-width: 520px; }
         .video-placeholder { background: rgba(0,0,0,0.3); border-radius: 12px; aspect-ratio: 16/9; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.3); cursor: pointer; }
         .video-placeholder .play-btn { width: 64px; height: 64px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; transition: transform 0.2s; }
@@ -168,7 +171,7 @@
         <p>Ayudamos a salones, spas, mecánicas y negocios de servicios a gestionar citas, clientes y operaciones diarias — con herramientas simples y sin tarifas de licencia mensuales.</p>
         <div class="ms-hero-btns">
             <a href="schedule-es.html" class="btn-primary-hero">Consulta Gratuita</a>
-            <a href="how-it-works-es.html" class="btn-secondary-hero">Cómo Funciona</a>
+            <a href="https://appointsuite.tech/book/smart-local-services-demo/" target="_blank" rel="noopener" class="btn-demo-hero">Prueba una Reserva Real</a>
         </div>
     </div>
     <div class="ms-hero-right">
