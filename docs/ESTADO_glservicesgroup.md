@@ -1,4 +1,4 @@
-# Estado glservicesgroup.com — 25 jun 2026 (sesión cerrada)
+# Estado glservicesgroup.com — 27 jun 2026 (sesión cerrada)
 
 ## ✅ COMPLETADO Y EN VIVO
 - Sitio estático en Vercel (local→GitHub→Vercel, repo gloria-website). Hostinger ya no se usa.
