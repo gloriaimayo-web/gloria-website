@@ -1,0 +1,17 @@
+{
+  "redirects": [
+    { "source": "/about.html", "destination": "/en/#gl", "permanent": true },
+    { "source": "/services.html", "destination": "/en/#funciones", "permanent": true },
+    { "source": "/contact.html", "destination": "/en/#contacto", "permanent": true },
+    { "source": "/how-it-works.html", "destination": "/en/#como-funciona", "permanent": true },
+    { "source": "/schedule.html", "destination": "/en/schedule.html", "permanent": true },
+    { "source": "/privacy.html", "destination": "/en/privacy.html", "permanent": true },
+    { "source": "/index-es.html", "destination": "/es/", "permanent": true },
+    { "source": "/about-es.html", "destination": "/es/#gl", "permanent": true },
+    { "source": "/services-es.html", "destination": "/es/#funciones", "permanent": true },
+    { "source": "/contact-es.html", "destination": "/es/#contacto", "permanent": true },
+    { "source": "/how-it-works-es.html", "destination": "/es/#como-funciona", "permanent": true },
+    { "source": "/schedule-es.html", "destination": "/es/schedule.html", "permanent": true },
+    { "source": "/privacy-es.html", "destination": "/es/privacy.html", "permanent": true }
+  ]
+}

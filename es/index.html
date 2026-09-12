@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>AppointSuite | Reservas y gestión de clientes para pequeños negocios</title>
+    <link rel="canonical" href="https://glservicesgroup.com/es/">
+    <link rel="alternate" hreflang="en" href="https://glservicesgroup.com/en/">
+    <link rel="alternate" hreflang="es" href="https://glservicesgroup.com/es/">
+    <link rel="alternate" hreflang="x-default" href="https://glservicesgroup.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Organiza citas, clientes y seguimiento con AppointSuite. Configuración, capacitación y soporte humano para negocios de servicios en Colombia y Canadá.">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', 'Segoe UI', sans-serif; color: #1a1a1a; background: #fff; }
+
+        /* NAV */
+        .ms-nav {
+            background: #0078D4;
+            padding: 0 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ms-nav .logo-area { display: flex; align-items: center; gap: 10px; }
+        .ms-nav .logo { height: 60px; width: auto; filter: drop-shadow(0 0 8px rgba(255,255,255,0.4)); }
+        .ms-nav .company-name { color: white; font-size: 18px; font-weight: 700; letter-spacing: 0.3px; border-left: 1px solid rgba(255,255,255,0.4); padding-left: 12px; margin-left: 4px; }
+        .ms-nav ul { list-style: none; display: flex; gap: 4px; align-items: center; }
+        .ms-nav ul li a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .ms-nav ul li a:hover { background: rgba(255,255,255,0.15); color: white; }
+        .ms-nav .lang-switch a {
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* HERO */
+        .ms-hero {
+            background: linear-gradient(135deg, #0078D4 0%, #005A9E 50%, #50C0E0 100%);
+            padding: 80px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            min-height: 480px;
+        }
+        .ms-hero-left { flex: 1; max-width: 580px; }
+        .ms-hero-left .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .ms-hero-left h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+        .ms-hero-left p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        .ms-hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn-primary-hero {
+            background: white;
+            color: #0078D4;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+        .btn-primary-hero:hover { background: #f0f0f0; }
+        .btn-secondary-hero {
+            background: transparent;
+            color: white;
+            border: 1.5px solid white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+        .btn-secondary-hero:hover { background: rgba(255,255,255,0.15); }
+        .ms-hero-right { flex: 1; max-width: 460px; }
+        .hero-card {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 12px;
+            padding: 32px;
+        }
+        .hero-card h3 { color: white; font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+        .hero-card ul { list-style: none; }
+        .hero-card ul li { color: rgba(255,255,255,0.95); font-size: 0.95rem; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+        .hero-card ul li:last-child { border-bottom: none; }
+        .hero-card ul li::before { content: "✓  "; font-weight: 700; color: #FFB900; }
+
+        /* SECTION BASE */
+        .ms-section { padding: 72px 40px; }
+        .ms-section-alt { background: #F8F8F8; }
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #0078D4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: #555;
+            max-width: 680px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .center { text-align: center; }
+        .center .section-subtitle { margin: 0 auto 20px; }
+        .section-body { max-width: 760px; margin: 0 auto; }
+        .section-body p { font-size: 1.05rem; color: #444; line-height: 1.75; margin-bottom: 16px; }
+
+        /* HOW IT WORKS */
+        .steps-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+            position: relative;
+        }
+        .steps-row::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: 8%;
+            right: 8%;
+            height: 2px;
+            background: #0078D4;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        .step-item { text-align: center; position: relative; z-index: 1; }
+        .step-circle {
+            width: 56px;
+            height: 56px;
+            background: #0078D4;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+        .step-item h3 { font-size: 0.95rem; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+        .step-item p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+
+        /* FUNCTIONS CHECKLIST */
+        .functions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 32px;
+            max-width: 900px;
+            margin: 32px auto 0;
+        }
+        .functions-grid li {
+            list-style: none;
+            font-size: 0.98rem;
+            color: #333;
+            line-height: 1.6;
+            padding: 10px 0 10px 28px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        .functions-grid li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #0078D4;
+            font-weight: 700;
+        }
+
+        /* PLANS TABLE */
+        .plans-table-wrap { max-width: 900px; margin: 32px auto 0; overflow-x: auto; }
+        .plans-table { width: 100%; border-collapse: collapse; background: white; border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden; }
+        .plans-table th, .plans-table td { padding: 16px 20px; text-align: left; font-size: 0.9rem; border-bottom: 1px solid #eee; vertical-align: top; }
+        .plans-table th { background: #0078D4; color: white; font-weight: 700; }
+        .plans-table td:first-child, .plans-table th:first-child { font-weight: 700; color: #1a1a1a; width: 22%; }
+        .plans-table tr:last-child td { border-bottom: none; }
+
+        /* PRICING */
+        .pricing-section { background: #F2F2F2; padding: 72px 40px; }
+        .country-block { max-width: 960px; margin: 0 auto 48px; }
+        .country-block:last-of-type { margin-bottom: 0; }
+        .country-label { font-size: 1.1rem; font-weight: 700; color: #0078D4; margin-bottom: 20px; text-align: center; }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .pricing-grid.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 640px; }
+        .pricing-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 32px 28px;
+            position: relative;
+        }
+        .pricing-card.featured { border: 2px solid #0078D4; }
+        .popular-tag {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0078D4;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .pricing-card h3 { font-size: 1rem; font-weight: 700; color: #555; margin-bottom: 8px; }
+        .pricing-price { font-size: 2rem; font-weight: 700; color: #1a1a1a; margin: 8px 0 4px; }
+        .pricing-price span { font-size: 0.85rem; font-weight: 400; color: #888; }
+        .pricing-note { text-align: center; margin-top: 32px; font-size: 13px; color: #666; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+        /* FAQ */
+        .faq-wrap { max-width: 760px; margin: 32px auto 0; }
+        .faq-item { background: white; border: 1px solid #e5e5e5; border-radius: 8px; margin-bottom: 12px; padding: 4px 20px; }
+        .faq-item summary { font-weight: 700; font-size: 0.98rem; color: #1a1a1a; padding: 16px 0; cursor: pointer; list-style: none; position: relative; padding-right: 24px; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: "+"; position: absolute; right: 0; top: 14px; color: #0078D4; font-size: 1.3rem; font-weight: 700; }
+        .faq-item[open] summary::after { content: "–"; }
+        .faq-item p { font-size: 0.92rem; color: #555; line-height: 1.6; padding: 0 0 18px; }
+
+        /* INNOVATION TABLE */
+        .innovation-table-wrap { max-width: 760px; margin: 32px auto 0; overflow-x: auto; }
+        .innovation-table { width: 100%; border-collapse: collapse; background: white; border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden; }
+        .innovation-table th, .innovation-table td { padding: 14px 20px; text-align: left; font-size: 0.9rem; border-bottom: 1px solid #eee; }
+        .innovation-table th { background: #1a1a1a; color: white; font-weight: 700; }
+        .innovation-table tr:last-child td { border-bottom: none; }
+        .status-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .status-badge.live { background: #DFF6DD; color: #107C10; }
+        .status-badge.dev { background: #FFF4CE; color: #835B00; }
+        .status-badge.research { background: #E6F1FB; color: #0078D4; }
+        .status-badge.prototype { background: #eee; color: #555; }
+
+        /* CONTACT */
+        .contact-blocks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 760px; margin: 32px auto 0; }
+        .contact-block { background: white; border: 1px solid #e5e5e5; border-radius: 8px; padding: 24px; }
+        .contact-block h3 { font-size: 1rem; font-weight: 700; color: #0078D4; margin-bottom: 12px; }
+        .contact-block p { font-size: 0.95rem; color: #333; margin-bottom: 6px; }
+        .contact-block a { color: #0078D4; font-weight: 600; text-decoration: none; }
+        .contact-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+        .btn-ms {
+            display: inline-block;
+            background: #0078D4;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+        .btn-ms:hover { background: #005A9E; }
+        .btn-ms-outline {
+            display: inline-block;
+            background: transparent;
+            color: #0078D4;
+            border: 1.5px solid #0078D4;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+        .btn-ms-outline:hover { background: #E6F1FB; }
+
+        /* FOOTER */
+        .ms-footer {
+            background: #1a1a1a;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        .ms-footer .footer-col p, .ms-footer .footer-col a { color: #aaa; font-size: 13px; line-height: 2; text-decoration: none; display: block; }
+        .ms-footer .footer-col a:hover { color: white; }
+        .ms-footer .footer-col .footer-logo { height: 40px; width: auto; margin-bottom: 12px; filter: brightness(0) invert(1); opacity: 0.8; }
+        .ms-footer .footer-col .company { color: white; font-weight: 600; font-size: 14px; }
+        .ms-footer .footer-bottom { width: 100%; border-top: 1px solid #333; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .ms-footer .footer-bottom p { color: #666; font-size: 12px; }
+        .ms-footer .footer-bottom a { color: #666; font-size: 12px; text-decoration: none; }
+        .ms-footer .footer-bottom a:hover { color: #aaa; }
+
+        /* FLOAT BUTTONS */
+        .whatsapp-float {
+            position: fixed; width: 56px; height: 68px;
+            right: 24px; bottom: 24px;
+            background: #25D366; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9998;
+            transition: transform 0.2s;
+        }
+        .whatsapp-float:hover { transform: scale(1.08); }
+        .whatsapp-icon { width: 32px; height: 32px; }
+
+        /* GL CHATBOT WIDGET */
+        .gl-chat-fab {
+            position: fixed; left: 24px; bottom: 24px;
+            width: 56px; height: 56px; border-radius: 50%;
+            overflow: hidden; border: 2px solid white; padding: 0; background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25); z-index: 9998;
+            cursor: pointer; transition: transform 0.2s;
+        }
+        .gl-chat-fab:hover { transform: scale(1.08); }
+        .gl-chat-fab img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .gl-chat-panel {
+            position: fixed; left: 24px; bottom: 92px;
+            width: min(360px, calc(100% - 48px));
+            height: min(480px, calc(100% - 220px));
+            background: white; border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            display: none; flex-direction: column; overflow: hidden;
+            z-index: 9999;
+        }
+        .gl-chat-panel.is-open { display: flex; }
+        .gl-chat-header { background: #0078D4; color: white; padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+        .gl-chat-header img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid white; }
+        .gl-chat-title { flex: 1; }
+        .gl-chat-title h4 { font-size: 14px; font-weight: 700; }
+        .gl-chat-title p { font-size: 11px; opacity: 0.85; }
+        .gl-chat-close { background: transparent; border: none; color: white; font-size: 20px; cursor: pointer; }
+        .gl-chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: #F8F8F8; }
+        .gl-chat-msg { max-width: 80%; padding: 8px 12px; border-radius: 12px; font-size: 13px; line-height: 1.5; white-space: pre-line; }
+        .gl-chat-msg.bot { align-self: flex-start; background: white; border: 1px solid #e5e5e5; }
+        .gl-chat-msg.user { align-self: flex-end; background: #0078D4; color: white; }
+        .gl-chat-typing { align-self: flex-start; display: flex; gap: 4px; padding: 10px 12px; background: white; border: 1px solid #e5e5e5; border-radius: 12px; }
+        .gl-chat-typing span { width: 6px; height: 6px; border-radius: 50%; background: #999; animation: gl-typing-bounce 1.2s infinite; }
+        .gl-chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+        .gl-chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes gl-typing-bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+        .gl-chat-input-area { display: flex; gap: 8px; padding: 12px; border-top: 1px solid #eee; }
+        .gl-chat-input { flex: 1; padding: 8px 12px; border: 1px solid #ddd; border-radius: 20px; font-size: 13px; font-family: inherit; }
+        .gl-chat-send { background: #0078D4; color: white; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 14px; flex-shrink: 0; }
+        .gl-chat-send:hover { background: #005A9E; }
+
+        @media (max-width: 900px) {
+            .ms-hero { flex-direction: column; padding: 48px 24px; }
+            .ms-hero-left h1 { font-size: 1.8rem; }
+            .ms-hero-right { width: 100%; max-width: none; }
+            .steps-row { grid-template-columns: repeat(2, 1fr); }
+            .functions-grid { grid-template-columns: 1fr; }
+            .pricing-grid, .pricing-grid.cols-2 { grid-template-columns: 1fr; }
+            .contact-blocks { grid-template-columns: 1fr; }
+            .ms-section, .pricing-section { padding: 48px 24px; }
+            .ms-nav { padding: 0 16px; }
+            .ms-nav .company-name { display: none; }
+            .steps-row::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav class="ms-nav">
+    <div class="logo-area">
+        <img src="../logo.png" alt="G&L Services Group" class="logo">
+        <span class="company-name">G&L Services Group</span>
+    </div>
+    <ul>
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#planes">Planes</a></li>
+        <li><a href="#faq">Preguntas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li class="lang-switch"><a href="../en/">EN</a></li>
+    </ul>
+</nav>
+
+<!-- 1. HERO -->
+<section class="ms-hero" id="diagnostico">
+    <div class="ms-hero-left">
+        <span class="badge">Reservas y gestión de clientes</span>
+        <h1>Organiza tus citas, tus clientes y tus oportunidades de venta — con acompañamiento humano.</h1>
+        <p>Ayudamos a pequeños negocios de servicios a reducir el desorden de llamadas y mensajes, gestionar sus reservas y dar seguimiento a sus clientes. Configuramos AppointSuite según la forma en que trabaja tu negocio y te acompañamos para que de verdad puedas usarlo.</p>
+        <div class="ms-hero-btns">
+            <a href="schedule.html" class="btn-primary-hero">Solicitar diagnóstico gratuito</a>
+            <a href="https://appointsuite.tech/book/demo-beauty-salon/" target="_blank" rel="noopener" class="btn-secondary-hero">Ver demostración</a>
+        </div>
+    </div>
+    <div class="ms-hero-right">
+        <div class="hero-card">
+            <h3>Qué recibes desde el primer día</h3>
+            <ul>
+                <li>Un diagnóstico gratuito y sin compromiso</li>
+                <li>Una página de reservas configurada para tu negocio</li>
+                <li>Capacitación y acompañamiento humano para usarla</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- 2. PROBLEMA -->
+<section class="ms-section">
+    <div class="section-label">El Problema</div>
+    <h2 class="section-title">¿Tu negocio vive pegado al celular?</h2>
+    <div class="section-body">
+        <p>Las solicitudes de cita llegan mezcladas entre llamadas y mensajes, se cruzan horarios, se olvidan cambios y la información de tus clientes queda regada. Mientras atiendes, no alcanzas a responder — y cada mensaje sin contestar puede ser una cita perdida.</p>
+    </div>
+</section>
+
+<!-- 3. RESULTADO -->
+<section class="ms-section ms-section-alt">
+    <div class="section-label">El Resultado</div>
+    <h2 class="section-title">Un negocio que funciona solo mientras tú atiendes</h2>
+    <div class="section-body">
+        <p>Imagina un negocio donde tus clientes solicitan su cita desde un enlace o un código QR, tu agenda está ordenada en un solo lugar, y la información de cada cliente queda guardada para volver a invitarlos. Eso es lo que dejamos funcionando.</p>
+    </div>
+</section>
+
+<!-- 4. CÓMO FUNCIONA -->
+<section class="ms-section" id="como-funciona">
+    <div class="center">
+        <div class="section-label">Cómo Funciona</div>
+        <h2 class="section-title">Un método estructurado, no solo un programa</h2>
+        <p class="section-subtitle">No te entregamos un programa y te deseamos suerte. Seguimos un método estructurado, basado en principios de gestión de calidad.</p>
+    </div>
+    <div class="steps-row">
+        <div class="step-item">
+            <div class="step-circle">1</div>
+            <h3>Diagnóstico</h3>
+            <p>De cómo trabajas hoy.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-circle">2</div>
+            <h3>Organización</h3>
+            <p>De tus servicios y horarios.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-circle">3</div>
+            <h3>Configuración</h3>
+            <p>De la plataforma.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-circle">4</div>
+            <h3>Capacitación</h3>
+            <p>Para usarla con confianza.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-circle">5</div>
+            <h3>Acompañamiento</h3>
+            <p>Durante las primeras semanas.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 5. PLATAFORMA -->
+<section class="ms-section ms-section-alt" id="plataforma">
+    <div class="section-label">AppointSuite como Plataforma</div>
+    <h2 class="section-title">Una plataforma que configuramos y mantenemos por ti</h2>
+    <div class="section-body">
+        <p>AppointSuite es nuestra plataforma de reservas y gestión de clientes. Tus datos comerciales siguen siendo tuyos; AppointSuite es la herramienta que nosotros configuramos y mantenemos para ti. Tú te dedicas a atender; nosotros mantenemos la tecnología funcionando.</p>
+    </div>
+</section>
+
+<!-- 6. FUNCIONES -->
+<section class="ms-section" id="funciones">
+    <div class="center">
+        <div class="section-label">Funciones Reales y Auditadas</div>
+        <h2 class="section-title">Funciones disponibles (según el plan)</h2>
+    </div>
+    <ul class="functions-grid">
+        <li>Página de reservas personalizada para tu negocio, con enlace propio</li>
+        <li>Confirmaciones de cita por correo</li>
+        <li>Recordatorios automáticos por correo, para reducir ausencias</li>
+        <li>Registro de clientes (mini-CRM) que crece con cada cita</li>
+        <li>Código QR para tu puerta o mostrador</li>
+        <li>Reservas con varios profesionales, sin que se crucen las citas</li>
+        <li>Reportes de tu actividad: citas, servicios más pedidos, cancelaciones y ausencias</li>
+        <li>Cancelación con enlace seguro para que el cliente libere el cupo</li>
+    </ul>
+</section>
+
+<!-- 7. PLANES -->
+<section class="ms-section ms-section-alt" id="planes">
+    <div class="center">
+        <div class="section-label">Planes</div>
+        <h2 class="section-title">Dos niveles de instalación, una sola mensualidad</h2>
+        <p class="section-subtitle">Dos niveles de instalación (pago único), según cuánto te configuramos al arrancar. La mensualidad mantiene todo funcionando. Más sedes, más profesionales, integraciones o personalizaciones se cotizan aparte.</p>
+        <p class="section-subtitle" style="font-weight:600;color:#0078D4;">Trabajas sola → Basic. Tienes equipo o pierdes citas por olvidos → Advanced.</p>
+    </div>
+    <div class="plans-table-wrap">
+        <table class="plans-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Basic — "Empieza a recibir reservas"</th>
+                    <th>Advanced — "Recibe reservas y deja de perderlas"</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Para</td>
+                    <td>Quien trabaja solo/a</td>
+                    <td>Equipos o quien quiere reducir ausencias</td>
+                </tr>
+                <tr>
+                    <td>Incluye</td>
+                    <td>Página de reservas, confirmaciones por correo, registro de clientes y código QR</td>
+                    <td>Todo lo de Basic + reservas con varios profesionales, reportes, cancelación con enlace seguro y recordatorios por correo</td>
+                </tr>
+                <tr>
+                    <td>Sedes</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Profesionales</td>
+                    <td>1</td>
+                    <td>Hasta 5</td>
+                </tr>
+                <tr>
+                    <td>Servicios</td>
+                    <td>Hasta 10</td>
+                    <td>Hasta 30</td>
+                </tr>
+                <tr>
+                    <td>Capacitación</td>
+                    <td>1 sesión</td>
+                    <td>Hasta 2 sesiones</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- 8. PRECIOS POR PAÍS -->
+<section class="pricing-section" id="precios">
+    <div class="center">
+        <div class="section-label">Precios</div>
+        <h2 class="section-title">Precios de lanzamiento, por país</h2>
+    </div>
+
+    <div class="country-block">
+        <div class="country-label">🇨🇴 Colombia — COP</div>
+        <div class="pricing-grid cols-2">
+            <div class="pricing-card">
+                <h3>Implementación (única vez)</h3>
+                <div class="pricing-price">$299.000 <span>COP</span></div>
+            </div>
+            <div class="pricing-card">
+                <h3>Servicio mensual</h3>
+                <div class="pricing-price">$69.000 <span>COP / mes</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="country-block">
+        <div class="country-label">🇨🇦 Canadá — CAD</div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Basic Setup</h3>
+                <div class="pricing-price">$120 <span>CAD única vez</span></div>
+            </div>
+            <div class="pricing-card featured">
+                <span class="popular-tag">★ Más Popular</span>
+                <h3>Advanced Setup</h3>
+                <div class="pricing-price">$180 <span>CAD única vez</span></div>
+            </div>
+            <div class="pricing-card">
+                <h3>Monthly Support</h3>
+                <div class="pricing-price">$50 <span>CAD / mes</span></div>
+            </div>
+        </div>
+    </div>
+
+    <p class="pricing-note">Precios de lanzamiento. El alcance final se confirma después del diagnóstico gratuito.</p>
+</section>
+
+<!-- 9. ACOMPAÑAMIENTO -->
+<section class="ms-section" id="acompanamiento">
+    <div class="section-label">Acompañamiento Mensual</div>
+    <h2 class="section-title">Mantenemos la tecnología funcionando</h2>
+    <div class="section-body">
+        <p>El servicio mensual mantiene tu plataforma activa e incluye alojamiento, mantenimiento general, actualizaciones correctivas y soporte dentro del alcance contratado. Nuevos módulos, integraciones, personalizaciones, servicios de terceros o funciones premium pueden tener un costo adicional.</p>
+    </div>
+</section>
+
+<!-- 10. CASOS PILOTO -->
+<section class="ms-section ms-section-alt" id="casos-piloto">
+    <div class="section-label">Casos Piloto</div>
+    <h2 class="section-title">Validando AppointSuite con negocios reales</h2>
+    <div class="section-body">
+        <p>AppointSuite ya se utiliza en proyectos piloto con pequeños negocios en Canadá y Colombia. Estos casos nos permiten validar la plataforma, entender necesidades reales y mejorar continuamente el servicio.</p>
+    </div>
+</section>
+
+<!-- 11. FAQ -->
+<section class="ms-section" id="faq">
+    <div class="center">
+        <div class="section-label">Preguntas Frecuentes</div>
+        <h2 class="section-title">Lo que más nos preguntan</h2>
+    </div>
+    <div class="faq-wrap">
+        <details class="faq-item">
+            <summary>¿Hay una mensualidad?</summary>
+            <p>Sí. El servicio mensual mantiene la plataforma activa, con actualizaciones y soporte. No manejamos contratos de permanencia.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Yo soy dueño del software?</summary>
+            <p>No. Tus datos comerciales son tuyos; AppointSuite es nuestra plataforma, que configuramos y mantenemos para ti.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿En cuánto tiempo queda listo?</summary>
+            <p>Te damos un tiempo estimado después del diagnóstico, cuando conocemos el alcance de tu negocio.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Qué funciones están incluidas?</summary>
+            <p>Distinguimos siempre entre funciones incluidas, opcionales y en desarrollo. Nunca prometemos una función sin confirmarla.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Envían recordatorios por WhatsApp o SMS?</summary>
+            <p>Por ahora los recordatorios y confirmaciones son por correo. Los canales por WhatsApp/SMS están en desarrollo.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Aparezco en Google automáticamente?</summary>
+            <p>No es automático. Podemos orientarte, pero no garantizamos posiciones ni resultados de ventas.</p>
+        </details>
+    </div>
+</section>
+
+<!-- 13. G&L SERVICES GROUP -->
+<section class="ms-section ms-section-alt" id="gl">
+    <div class="section-label">Quiénes Somos</div>
+    <h2 class="section-title">G&amp;L Services Group</h2>
+    <div class="section-body">
+        <p>G&amp;L Services Group desarrolla e implementa soluciones tecnológicas para organizar negocios, mejorar la atención y facilitar la conexión entre personas y servicios. AppointSuite es nuestra plataforma principal de reservas y gestión de clientes. El servicio es liderado por una ingeniera de sistemas con experiencia en procesos y gestión de calidad.</p>
+    </div>
+</section>
+
+<!-- 14. INNOVACIÓN -->
+<section class="ms-section" id="innovacion">
+    <div class="center">
+        <div class="section-label">Innovación en Desarrollo</div>
+        <h2 class="section-title">Ampliando la tecnología de AppointSuite</h2>
+        <p class="section-subtitle">Estos proyectos están en distintas etapas de desarrollo y validación, y todavía no forman parte de la oferta comercial general.</p>
+    </div>
+    <div class="innovation-table-wrap">
+        <table class="innovation-table">
+            <thead>
+                <tr><th>Proyecto</th><th>Estado</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>AppointSuite Web</td><td><span class="status-badge live">Disponible</span></td></tr>
+                <tr><td>Aplicación móvil (Android / iOS)</td><td><span class="status-badge dev">En desarrollo</span></td></tr>
+                <tr><td>AppointAge (asistencia para adultos mayores)</td><td><span class="status-badge research">Investigación y desarrollo activo</span></td></tr>
+                <tr><td>AppointAccess (control de acceso ligado a la reserva)</td><td><span class="status-badge prototype">Prototipo</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- 15. CONTACTO -->
+<section class="ms-section ms-section-alt" id="contacto">
+    <div class="center">
+        <div class="section-label">Contacto</div>
+        <h2 class="section-title">Diagnóstico gratuito</h2>
+        <p class="section-subtitle">Empieza con un diagnóstico gratuito: entendemos cómo trabajas hoy y te mostramos cómo quedaría tu negocio organizado. Sin compromiso.</p>
+    </div>
+    <div class="contact-blocks">
+        <div class="contact-block">
+            <h3>🇨🇴 Colombia</h3>
+            <p>WhatsApp: __________</p>
+            <p>Correo: <a href="mailto:info@appointsuite.tech">info@appointsuite.tech</a></p>
+        </div>
+        <div class="contact-block">
+            <h3>🇨🇦 Canadá</h3>
+            <p>WhatsApp: <a href="https://wa.me/14376779018" target="_blank" rel="noopener">+1 (437) 677-9018</a></p>
+            <p>Correo: <a href="mailto:contact@glservicesgroup.com">contact@glservicesgroup.com</a></p>
+        </div>
+    </div>
+    <div class="contact-cta">
+        <a href="schedule.html" class="btn-ms">Solicitar diagnóstico gratuito</a>
+        <a href="https://appointsuite.tech/book/demo-beauty-salon/" target="_blank" rel="noopener" class="btn-ms-outline">Ver demostración</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ms-footer">
+    <div class="footer-col">
+        <img src="../logo.png" alt="G&L Services Group" class="footer-logo">
+        <span class="company">G&L Services Group</span>
+        <p>+1 (437) 677-9018</p>
+        <p>contact@glservicesgroup.com</p>
+        <p>Woodbridge, Vaughan, Ontario, Canadá</p>
+    </div>
+    <div class="footer-col">
+        <span class="company" style="margin-bottom:8px;display:block;">Enlaces</span>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#planes">Planes</a>
+        <a href="#faq">Preguntas</a>
+        <a href="schedule.html">Solicitar diagnóstico gratuito</a>
+    </div>
+    <div class="footer-col">
+        <span class="company" style="margin-bottom:8px;display:block;">Legal</span>
+        <a href="privacy.html">Política de Privacidad</a>
+        <a href="../en/">English</a>
+    </div>
+    <div class="footer-bottom">
+        <p>© <span id="footer-year">2026</span> G&L Services Group. Todos los derechos reservados.</p>
+        <a href="privacy.html">Política de Privacidad</a>
+    </div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/14376779018?text=Hola!%20Quisiera%20m%C3%A1s%20informaci%C3%B3n." class="whatsapp-float" target="_blank" rel="noopener">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+</a>
+
+<!-- WIDGET DE CHAT G&L -->
+<button id="glChatFab" class="gl-chat-fab" aria-label="Abrir chat">
+    <img src="../images/chatbot-avatar.jpg" alt="Asistente de chat">
+</button>
+
+<div id="glChatPanel" class="gl-chat-panel" aria-hidden="true">
+    <div class="gl-chat-header">
+        <img src="../images/chatbot-avatar.jpg" alt="Asistente G&L">
+        <div class="gl-chat-title">
+            <h4>Asistente G&L</h4>
+            <p>Normalmente responde al instante</p>
+        </div>
+        <button id="glChatClose" class="gl-chat-close">×</button>
+    </div>
+    <div id="glChatMessages" class="gl-chat-messages"></div>
+    <div class="gl-chat-input-area">
+        <input type="text" id="glChatInput" class="gl-chat-input" placeholder="Escribe tu mensaje...">
+        <button id="glChatSend" class="gl-chat-send">➤</button>
+    </div>
+</div>
+
+<script>
+document.getElementById('footer-year').textContent = new Date().getFullYear();
+</script>
+
+<script>
+(function () {
+    const ENDPOINT = 'https://appointsuite.tech/messenger/glservicesgroup/message';
+    const GREETING = "¡Hola! Soy el asistente de G&L Services Group 👋\nAyudamos a negocios locales a digitalizar su agenda con AppointSuite.\n¿En qué te ayudo — servicios, precios, para qué negocios es, o agendar una consulta gratuita?";
+    const CONNECTION_ERROR = "Disculpa, tengo problemas de conexión. ¡Escríbenos a contact@glservicesgroup.com!";
+
+    const fab = document.getElementById('glChatFab');
+    const panel = document.getElementById('glChatPanel');
+    const closeBtn = document.getElementById('glChatClose');
+    const messages = document.getElementById('glChatMessages');
+    const input = document.getElementById('glChatInput');
+    const sendBtn = document.getElementById('glChatSend');
+
+    let sessionId = localStorage.getItem('glChatSessionId');
+    if (!sessionId) {
+        sessionId = (crypto.randomUUID ? crypto.randomUUID() : 'session_' + Math.random().toString(36).slice(2));
+        localStorage.setItem('glChatSessionId', sessionId);
+    }
+    let opened = false;
+
+    function addMessage(text, role) {
+        const el = document.createElement('div');
+        el.className = `gl-chat-msg ${role}`;
+        el.textContent = text;
+        messages.appendChild(el);
+        messages.scrollTop = messages.scrollHeight;
+    }
+    function showTyping() {
+        const el = document.createElement('div');
+        el.className = 'gl-chat-typing';
+        el.id = 'glChatTyping';
+        el.innerHTML = '<span></span><span></span><span></span>';
+        messages.appendChild(el);
+        messages.scrollTop = messages.scrollHeight;
+    }
+    function removeTyping() {
+        const el = document.getElementById('glChatTyping');
+        if (el) el.remove();
+    }
+    function openPanel() {
+        panel.classList.add('is-open');
+        panel.setAttribute('aria-hidden', 'false');
+        if (!opened) {
+            opened = true;
+            setTimeout(() => addMessage(GREETING, 'bot'), 200);
+        }
+    }
+    function closePanel() {
+        panel.classList.remove('is-open');
+        panel.setAttribute('aria-hidden', 'true');
+    }
+    fab.addEventListener('click', () => panel.classList.contains('is-open') ? closePanel() : openPanel());
+    closeBtn.addEventListener('click', closePanel);
+
+    async function sendMessage() {
+        const text = input.value.trim();
+        if (!text) return;
+        addMessage(text, 'user');
+        input.value = '';
+        showTyping();
+        try {
+            const res = await fetch(ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text, session_id: sessionId })
+            });
+            const data = await res.json();
+            removeTyping();
+            addMessage(data.response || data.error || CONNECTION_ERROR, 'bot');
+        } catch (err) {
+            removeTyping();
+            addMessage(CONNECTION_ERROR, 'bot');
+        }
+    }
+    sendBtn.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
+})();
+</script>
+
+</body>
+</html>
