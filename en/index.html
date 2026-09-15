@@ -149,6 +149,8 @@
         .center .section-subtitle { margin: 0 auto 20px; }
         .section-body { max-width: 760px; margin: 0 auto; }
         .section-body p { font-size: 1.05rem; color: #444; line-height: 1.75; margin-bottom: 16px; }
+        .founder-row { display: flex; align-items: flex-start; gap: 24px; }
+        .founder-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; background: #E6F1FB; border: 2px solid #0078D4; flex-shrink: 0; }
 
         /* HOW IT WORKS */
         .steps-row {
@@ -395,6 +397,7 @@
             .ms-nav { padding: 0 16px; }
             .ms-nav .company-name { display: none; }
             .steps-row::before { display: none; }
+            .founder-row { flex-direction: column; align-items: center; text-align: center; }
         }
     </style>
 </head>
@@ -524,7 +527,7 @@
 <section class="ms-section ms-section-alt" id="planes">
     <div class="center">
         <div class="section-label">Plans</div>
-        <h2 class="section-title">Two setup levels, one monthly service</h2>
+        <h2 class="section-title">Two setup levels, with monthly support</h2>
         <p class="section-subtitle">Two one-time setup levels, based on how much we configure for you at launch. The monthly service keeps everything running. Extra locations, professionals, integrations or customizations are quoted separately.</p>
         <p class="section-subtitle" style="font-weight:600;color:#0078D4;">Working solo? Start with Basic. Have a team, or losing bookings to forgotten follow-ups? Go Advanced.</p>
     </div>
@@ -673,8 +676,12 @@
 <section class="ms-section ms-section-alt" id="gl">
     <div class="section-label">Who We Are</div>
     <h2 class="section-title">G&amp;L Services Group</h2>
-    <div class="section-body">
-        <p>G&amp;L Services Group develops and implements technology solutions that help businesses stay organized, improve client service and connect people with services. AppointSuite is our core booking and client-management platform, led by a systems engineer with experience in process and quality management.</p>
+    <div class="section-body founder-row">
+        <img src="../images/gloria-mayo.jpg" alt="Gloria Mayo, founder of G&amp;L Services Group" class="founder-photo" onerror="this.style.display='none'">
+        <div>
+            <p>G&amp;L Services Group develops and implements technology solutions that help businesses stay organized, improve client service and connect people with services. AppointSuite is our core booking and client-management platform.</p>
+            <p>The service is led by Gloria Mayo, a systems engineer with experience in process and quality management, founder of G&amp;L Services Group and creator of AppointSuite.</p>
+        </div>
     </div>
 </section>
 
@@ -710,7 +717,7 @@
     <div class="contact-blocks">
         <div class="contact-block">
             <h3>🇨🇴 Colombia</h3>
-            <p>Email: <a href="mailto:info@appointsuite.tech">info@appointsuite.tech</a></p>
+            <p>Email: <a href="mailto:contact@glservicesgroup.com">contact@glservicesgroup.com</a></p>
         </div>
         <div class="contact-block">
             <h3>🇨🇦 Canada</h3>
