@@ -108,6 +108,16 @@
         }
         .btn-secondary-hero:hover { background: rgba(255,255,255,0.15); }
         .ms-hero-right { flex: 1; max-width: 460px; }
+        .hero-photo {
+            display: block;
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 16px;
+            margin: 0 auto 24px;
+        }
         .hero-card {
             background: rgba(255,255,255,0.12);
             border: 1px solid rgba(255,255,255,0.35);
@@ -399,6 +409,10 @@
             .steps-row::before { display: none; }
             .founder-row { flex-direction: column; align-items: center; text-align: center; }
         }
+
+        @media (max-width: 768px) {
+            .hero-photo { max-width: 320px; margin: 0 auto 24px; }
+        }
     </style>
 </head>
 <body>
@@ -430,6 +444,7 @@
         </div>
     </div>
     <div class="ms-hero-right">
+        <img src="../images/gloria-hero.webp" alt="Gloria, founder of G&amp;L Services Group" class="hero-photo" width="800" height="1000" loading="eager" fetchpriority="high">
         <div class="hero-card">
             <h3>What you get from day one</h3>
             <ul>
