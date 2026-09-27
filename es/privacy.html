@@ -10,14 +10,16 @@
     <meta name="robots" content="noindex">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../images/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-180x180.png">
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', 'Segoe UI', sans-serif; color: #1a1a1a; background: #fff; }
         .ms-nav { background: #0078D4; padding: 0 40px; position: sticky; top: 0; z-index: 1000; height: 68px; display: flex; align-items: center; justify-content: space-between; }
         .ms-nav .logo-area { display: flex; align-items: center; gap: 10px; }
-        .ms-nav .logo { height: 60px; width: auto; filter: drop-shadow(0 0 8px rgba(255,255,255,0.4)); }
-        .ms-nav .company-name { color: white; font-size: 18px; font-weight: 700; border-left: 1px solid rgba(255,255,255,0.4); padding-left: 12px; margin-left: 4px; }
+        .ms-nav .logo { height: 48px; width: auto; }
         .ms-nav ul { list-style: none; display: flex; gap: 4px; }
         .ms-nav ul li a { color: rgba(255,255,255,0.9); text-decoration: none; font-size: 14px; padding: 6px 12px; border-radius: 4px; transition: background 0.15s; }
         .ms-nav ul li a:hover { background: rgba(255,255,255,0.15); color: white; }
@@ -47,7 +49,7 @@
         .whatsapp-float { position: fixed; width: 56px; height: 56px; right: 24px; bottom: 24px; background: #25D366; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9998; transition: transform 0.2s; }
         .whatsapp-float:hover { transform: scale(1.08); }
         .whatsapp-icon { width: 32px; height: 32px; }
-        @media (max-width: 768px) { .ms-nav { padding: 0 16px; } .ms-nav .company-name { display: none; } .page-content { padding: 40px 20px; } }
+        @media (max-width: 768px) { .ms-nav { padding: 0 16px; } .ms-nav .logo { height: 40px; } .page-content { padding: 40px 20px; } }
     </style>
 </head>
 <body>
@@ -56,8 +58,7 @@
 
 <nav class="ms-nav">
     <div class="logo-area">
-        <img src="../logo.png" alt="G&amp;L Services Group" class="logo">
-        <span class="company-name">G&amp;L Services Group</span>
+        <img src="../images/GL-horizontal-blanco.png" alt="G&amp;L Services Group" class="logo">
     </div>
     <ul>
         <li><a href="../es/">Inicio</a></li>
@@ -136,7 +137,7 @@
 
 <footer class="ms-footer">
     <div class="footer-col">
-        <img src="../logo.png" alt="G&L Services Group" class="footer-logo">
+        <img src="../images/GL-horizontal-blanco.png" alt="G&L Services Group" class="footer-logo">
         <span class="company">G&L Services Group</span>
         <p>+1 (437) 677-9018</p>
         <p>contact@glservicesgroup.com</p>
