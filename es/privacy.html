@@ -9,13 +9,14 @@
     <link rel="alternate" hreflang="x-default" href="https://glservicesgroup.com/en/privacy.html">
     <meta name="robots" content="noindex">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link rel="icon" href="../images/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-180x180.png">
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { overflow-x: hidden; }
         body { font-family: 'Inter', 'Segoe UI', sans-serif; color: #1a1a1a; background: #fff; }
         .ms-nav { background: #0078D4; padding: 0 40px; position: sticky; top: 0; z-index: 1000; height: 88px; display: flex; align-items: center; justify-content: space-between; }
         .ms-nav .logo-area { display: flex; align-items: center; gap: 10px; }
@@ -24,6 +25,21 @@
         .ms-nav ul li a { color: rgba(255,255,255,0.9); text-decoration: none; font-size: 14px; padding: 6px 12px; border-radius: 4px; transition: background 0.15s; }
         .ms-nav ul li a:hover { background: rgba(255,255,255,0.15); color: white; }
         .ms-nav .lang-switch a { border: 1px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 4px 10px; font-size: 13px; font-weight: 600; }
+
+        /* MOBILE NAV (hamburger, hidden by default; enabled <900px) */
+        .nav-mobile-controls { display: none; }
+        .lang-switch-mobile { display: none; }
+        .nav-toggle {
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            gap: 5px; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; padding: 0;
+        }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: white; border-radius: 2px; transition: transform 0.2s ease, opacity 0.2s ease; }
+        .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+        .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+        .nav-overlay.is-open { opacity: 1; pointer-events: auto; }
+
         .ms-hero-page { background: linear-gradient(135deg, #0078D4 0%, #005A9E 60%); padding: 60px 40px; text-align: center; }
         .ms-hero-page h1 { font-size: 2.2rem; font-weight: 700; color: white; margin-bottom: 12px; }
         .ms-hero-page p { font-size: 1.05rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto; line-height: 1.6; }
@@ -49,7 +65,41 @@
         .whatsapp-float { position: fixed; width: 56px; height: 56px; right: 24px; bottom: 24px; background: #25D366; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9998; transition: transform 0.2s; }
         .whatsapp-float:hover { transform: scale(1.08); }
         .whatsapp-icon { width: 32px; height: 32px; }
-        @media (max-width: 768px) { .ms-nav { padding: 0 16px; height: 72px; } .ms-nav .logo { height: 48px; } .page-content { padding: 40px 20px; } }
+        @media (max-width: 900px) {
+            .nav-toggle { display: flex; }
+            .nav-mobile-controls { display: flex; align-items: center; gap: 8px; }
+            .lang-switch-mobile {
+                display: flex; align-items: center; justify-content: center;
+                min-width: 44px; min-height: 44px; padding: 4px 10px;
+                color: white; border: 1px solid rgba(255,255,255,0.5); border-radius: 4px;
+                font-size: 13px; font-weight: 600; text-decoration: none;
+            }
+            .ms-nav ul .lang-switch { display: none; }
+            .ms-nav {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+                padding-top: env(safe-area-inset-top);
+                height: auto;
+                min-height: 88px;
+            }
+            .ms-nav ul {
+                position: fixed; top: 0; right: 0; height: 100vh; width: min(300px, 80vw); margin: 0;
+                background: #005A9E; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 4px;
+                padding: calc(24px + env(safe-area-inset-top)) 20px 24px;
+                transform: translateX(100%); transition: transform 0.25s ease; z-index: 1001; overflow-y: auto;
+            }
+            .ms-nav ul.is-open { transform: translateX(0); }
+            .ms-nav ul li { width: 100%; }
+            .ms-nav ul li a { display: block; padding: 14px 12px; font-size: 16px; }
+            .ms-hero-page { padding: 32px 20px; }
+            .ms-hero-page h1 { font-size: clamp(1.5rem, 4vw + 0.7rem, 2.2rem); }
+            .page-content { padding: 24px 20px; }
+            .page-content h2 { font-size: clamp(1.2rem, 3vw + 0.6rem, 1.4rem); }
+            .page-content p, .page-content ul li { font-size: 1rem; }
+            .ms-footer { padding: 24px 20px calc(24px + env(safe-area-inset-bottom)); padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
+        }
+
+        @media (max-width: 768px) { .ms-nav { min-height: 72px; } .ms-nav .logo { height: 48px; } }
     </style>
 </head>
 <body>
@@ -60,11 +110,18 @@
     <div class="logo-area">
         <img src="../images/GL-horizontal-blanco.png?v=3" alt="G&amp;L Services Group" class="logo">
     </div>
-    <ul>
+    <div class="nav-mobile-controls">
+        <a href="../en/privacy.html" class="lang-switch-mobile lang-link" data-lang="en" aria-label="Cambiar a inglés">EN</a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <ul id="navMenu">
         <li><a href="../es/">Inicio</a></li>
-        <li class="lang-switch"><a href="../en/privacy.html">EN</a></li>
+        <li class="lang-switch"><a href="../en/privacy.html" class="lang-link" data-lang="en">EN</a></li>
     </ul>
 </nav>
+<div class="nav-overlay" id="navOverlay"></div>
 
 <section class="ms-hero-page">
     <h1>Política de Privacidad</h1>
@@ -160,6 +217,51 @@
 
 <script>
 document.getElementById('footer-year').textContent = new Date().getFullYear();
+</script>
+
+<script>
+(function () {
+    var toggle = document.getElementById('navToggle');
+    var menu = document.getElementById('navMenu');
+    var overlay = document.getElementById('navOverlay');
+    function openMenu() {
+        menu.classList.add('is-open');
+        overlay.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        var firstLink = menu.querySelector('a');
+        if (firstLink) firstLink.focus();
+    }
+    function closeMenu() {
+        menu.classList.remove('is-open');
+        overlay.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+    toggle.addEventListener('click', function () {
+        if (menu.classList.contains('is-open')) { closeMenu(); } else { openMenu(); }
+    });
+    overlay.addEventListener('click', closeMenu);
+    menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+            closeMenu();
+            toggle.focus();
+        }
+    });
+
+    document.querySelectorAll('.lang-link').forEach(function (a) {
+        var base = a.getAttribute('href');
+        function syncHash() { a.href = base + (window.location.hash || ''); }
+        syncHash();
+        window.addEventListener('hashchange', syncHash);
+        a.addEventListener('click', function () {
+            try { localStorage.setItem('glLang', a.dataset.lang); } catch (e) {}
+        });
+    });
+})();
 </script>
 
 </body>
