@@ -7,6 +7,9 @@
     <link rel="alternate" hreflang="en" href="https://glservicesgroup.com/en/">
     <link rel="alternate" hreflang="es" href="https://glservicesgroup.com/es/">
     <link rel="alternate" hreflang="x-default" href="https://glservicesgroup.com/">
+    <link rel="icon" href="../images/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-180x180.png">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Organize appointments, clients and follow-up. Setup, training and human support for service businesses in Canada and Colombia.">
@@ -27,8 +30,7 @@
             justify-content: space-between;
         }
         .ms-nav .logo-area { display: flex; align-items: center; gap: 10px; }
-        .ms-nav .logo { height: 60px; width: auto; filter: drop-shadow(0 0 8px rgba(255,255,255,0.4)); }
-        .ms-nav .company-name { color: white; font-size: 18px; font-weight: 700; letter-spacing: 0.3px; border-left: 1px solid rgba(255,255,255,0.4); padding-left: 12px; margin-left: 4px; }
+        .ms-nav .logo { height: 48px; width: auto; }
         .ms-nav ul { list-style: none; display: flex; gap: 4px; align-items: center; }
         .ms-nav ul li a {
             color: rgba(255,255,255,0.9);
@@ -162,7 +164,7 @@
         .founder-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; background: #E6F1FB; border: 2px solid #0078D4; flex-shrink: 0; }
 
         /* APPOINTSUITE MINI FEATURES */
-        .appointsuite-logo { display: block; max-height: 64px; width: auto; margin: 24px auto 16px; }
+        .appointsuite-logo { display: block; max-height: 90px; width: auto; margin: 24px auto 16px; }
         .feature-mini-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin: 0 0 24px; }
         .feature-mini { background: white; border: 1px solid #e5e5e5; border-radius: 8px; padding: 12px 6px; text-align: center; }
         .feature-mini svg { width: 22px; height: 22px; margin: 0 auto 6px; display: block; }
@@ -434,7 +436,6 @@
             .contact-blocks { grid-template-columns: 1fr; }
             .ms-section, .pricing-section { padding: 29px 24px; }
             .ms-nav { padding: 0 16px; }
-            .ms-nav .company-name { display: none; }
             .steps-row::before { display: none; }
             .founder-row { flex-direction: column; align-items: center; text-align: center; }
             .feature-mini-row { grid-template-columns: repeat(4, 1fr); }
@@ -444,6 +445,7 @@
 
         @media (max-width: 768px) {
             .hero-photo { max-width: 320px; margin: 0 auto 24px; }
+            .ms-nav .logo { height: 40px; }
         }
     </style>
 </head>
@@ -452,8 +454,7 @@
 <!-- NAVIGATION -->
 <nav class="ms-nav">
     <div class="logo-area">
-        <img src="../logo.png" alt="G&L Services Group" class="logo">
-        <span class="company-name">G&L Services Group</span>
+        <img src="../images/GL-horizontal-blanco.png" alt="G&L Services Group" class="logo">
     </div>
     <ul>
         <li><a href="#como-funciona">How it works</a></li>
@@ -563,7 +564,7 @@
             <div class="feature-mini"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" aria-hidden="true"><path d="M6 10a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span>Reminders</span></div>
             <div class="feature-mini"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4.2 6 4.2 9s-1.4 6.4-4.2 9c-2.8-2.6-4.2-6-4.2-9s1.4-6.4 4.2-9Z"/></svg><span>Bilingual</span></div>
         </div>
-        <img src="../images/logo-appointsuite.png" alt="AppointSuite" class="appointsuite-logo">
+        <img src="../images/AppointSuite-logo-color.png" alt="AppointSuite" class="appointsuite-logo">
         <a href="https://appointsuite.tech/book/demo-beauty-salon/" target="_blank" rel="noopener" class="btn-ms-outline">See a live demo</a>
     </div>
 </section>
@@ -834,7 +835,7 @@
 <!-- FOOTER -->
 <footer class="ms-footer">
     <div class="footer-col">
-        <img src="../logo.png" alt="G&L Services Group" class="footer-logo">
+        <img src="../images/GL-horizontal-blanco.png" alt="G&L Services Group" class="footer-logo">
         <span class="company">G&L Services Group</span>
         <p>+1 (437) 677-9018</p>
         <p>contact@glservicesgroup.com</p>
