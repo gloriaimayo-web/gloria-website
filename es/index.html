@@ -11,10 +11,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-180x180.png">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="Organiza citas, clientes y seguimiento. Configuración, capacitación y acompañamiento humano para negocios de servicios en Colombia y Canadá.">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { overflow-x: hidden; }
         body { font-family: 'Inter', 'Segoe UI', sans-serif; color: #1a1a1a; background: #fff; }
 
         /* NAV */
@@ -48,6 +49,44 @@
             font-size: 13px;
             font-weight: 600;
         }
+
+        /* MOBILE NAV (hamburger, hidden by default; enabled <900px) */
+        .nav-mobile-controls { display: none; }
+        .lang-switch-mobile { display: none; }
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+        .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        .nav-overlay.is-open { opacity: 1; pointer-events: auto; }
 
         /* HERO */
         .ms-hero {
@@ -164,7 +203,7 @@
         .founder-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; background: #E6F1FB; border: 2px solid #0078D4; flex-shrink: 0; }
 
         /* APPOINTSUITE MINI FEATURES */
-        .appointsuite-logo { display: block; max-height: 90px; width: auto; margin: 24px auto 16px; }
+        .appointsuite-logo { display: block; max-height: 110px; width: auto; margin: 24px auto 16px; }
         .feature-mini-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin: 0 0 24px; }
         .feature-mini { background: white; border: 1px solid #e5e5e5; border-radius: 8px; padding: 12px 6px; text-align: center; }
         .feature-mini svg { width: 22px; height: 22px; margin: 0 auto 6px; display: block; }
@@ -367,7 +406,7 @@
         }
         .ms-footer .footer-col p, .ms-footer .footer-col a { color: #aaa; font-size: 13px; line-height: 2; text-decoration: none; display: block; }
         .ms-footer .footer-col a:hover { color: white; }
-        .ms-footer .footer-col .footer-logo { height: 110px; width: auto; margin-bottom: 12px; filter: brightness(0) invert(1); opacity: 0.8; }
+        .ms-footer .footer-col .footer-logo { height: 110px; width: auto; margin-bottom: 12px; }
         .ms-footer .footer-col .company { color: white; font-weight: 600; font-size: 14px; }
         .ms-footer .footer-bottom { width: 100%; border-top: 1px solid #333; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
         .ms-footer .footer-bottom p { color: #666; font-size: 12px; }
@@ -427,26 +466,105 @@
         .gl-chat-send:hover { background: #005A9E; }
 
         @media (max-width: 900px) {
-            .ms-hero { flex-direction: column; padding: 48px 24px; }
-            .ms-hero-left h1 { font-size: 1.8rem; }
+            .nav-toggle { display: flex; }
+            .nav-mobile-controls { display: flex; align-items: center; gap: 8px; }
+            .lang-switch-mobile {
+                display: flex; align-items: center; justify-content: center;
+                min-width: 44px; min-height: 44px; padding: 4px 10px;
+                color: white; border: 1px solid rgba(255,255,255,0.5); border-radius: 4px;
+                font-size: 13px; font-weight: 600; text-decoration: none;
+            }
+            .ms-nav ul .lang-switch { display: none; }
+            .ms-nav {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+                padding-top: env(safe-area-inset-top);
+                height: auto;
+                min-height: 88px;
+            }
+            .ms-nav ul {
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: min(300px, 80vw);
+                margin: 0;
+                background: #005A9E;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                gap: 4px;
+                padding: calc(24px + env(safe-area-inset-top)) 20px 24px;
+                transform: translateX(100%);
+                transition: transform 0.25s ease;
+                z-index: 1001;
+                overflow-y: auto;
+            }
+            .ms-nav ul.is-open { transform: translateX(0); }
+            .ms-nav ul li { width: 100%; }
+            .ms-nav ul li a { display: block; padding: 14px 12px; font-size: 16px; }
+
+            .ms-hero { flex-direction: column; padding: 32px 20px; }
+            .ms-hero-left h1 { font-size: clamp(1.4rem, 4vw + 0.6rem, 1.8rem); }
             .ms-hero-right { width: 100%; max-width: none; }
-            .steps-row { grid-template-columns: repeat(2, 1fr); }
-            .functions-grid { grid-template-columns: 1fr; }
+            .ms-hero-btns { flex-direction: column; align-items: stretch; }
+
+            .section-title { font-size: clamp(1.5rem, 4vw + 0.7rem, 2rem); }
+
+            .steps-row { grid-template-columns: repeat(2, 1fr); margin-top: 24px; }
+            .functions-grid { grid-template-columns: 1fr; margin-top: 20px; }
             .pricing-grid, .pricing-grid.cols-2 { grid-template-columns: 1fr; }
-            .contact-blocks { grid-template-columns: 1fr; }
-            .ms-section, .pricing-section { padding: 29px 24px; }
-            .ms-nav { padding: 0 16px; }
+            .contact-blocks { grid-template-columns: 1fr; margin-top: 20px; }
+            .ms-section, .pricing-section { padding: 24px 20px; }
             .steps-row::before { display: none; }
             .founder-row { flex-direction: column; align-items: center; text-align: center; }
             .feature-mini-row { grid-template-columns: repeat(4, 1fr); }
             .pilot-cards { grid-template-columns: 1fr; }
             .about-grid { grid-template-columns: 1fr; gap: 24px; }
+            .plans-table-wrap, .innovation-table-wrap, .faq-wrap { margin-top: 20px; }
+
+            .btn-primary-hero, .btn-secondary-hero, .btn-ms, .btn-ms-outline {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                min-height: 48px;
+                text-align: center;
+            }
+            .contact-cta { flex-direction: column; align-items: stretch; }
+
+            .functions-grid li,
+            .about-col p,
+            .about-col ul li,
+            .about-lead,
+            .about-cta,
+            .contact-block p,
+            .faq-item p,
+            .plans-table th,
+            .plans-table td,
+            .innovation-table th,
+            .innovation-table td,
+            .pilot-card p,
+            .step-item p,
+            .hero-card ul li {
+                font-size: 1rem;
+            }
+
+            .ms-footer {
+                padding: 24px 20px calc(100px + env(safe-area-inset-bottom));
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
         }
 
         @media (max-width: 768px) {
             .hero-photo { max-width: 320px; margin: 0 auto 24px; }
-            .ms-nav { height: 72px; }
+            .ms-nav { min-height: 72px; }
             .ms-nav .logo { height: 48px; }
+        }
+
+        @media (max-width: 480px) {
+            .feature-mini-row { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -457,14 +575,21 @@
     <div class="logo-area">
         <img src="../images/GL-horizontal-blanco.png?v=3" alt="G&L Services Group" class="logo">
     </div>
-    <ul>
+    <div class="nav-mobile-controls">
+        <a href="../en/" class="lang-switch-mobile lang-link" data-lang="en" aria-label="Cambiar a inglés">EN</a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <ul id="navMenu">
         <li><a href="#como-funciona">Cómo funciona</a></li>
         <li><a href="#planes">Planes</a></li>
         <li><a href="#faq">Preguntas</a></li>
         <li><a href="#contacto">Contacto</a></li>
-        <li class="lang-switch"><a href="../en/">EN</a></li>
+        <li class="lang-switch"><a href="../en/" class="lang-link" data-lang="en">EN</a></li>
     </ul>
 </nav>
+<div class="nav-overlay" id="navOverlay"></div>
 
 <!-- 1. HERO -->
 <section class="ms-hero" id="diagnostico">
@@ -565,7 +690,7 @@
             <div class="feature-mini"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" aria-hidden="true"><path d="M6 10a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span>Recordatorios</span></div>
             <div class="feature-mini"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4.2 6 4.2 9s-1.4 6.4-4.2 9c-2.8-2.6-4.2-6-4.2-9s1.4-6.4 4.2-9Z"/></svg><span>Bilingüe</span></div>
         </div>
-        <img src="../images/AppointSuite-logo-color.png" alt="AppointSuite" class="appointsuite-logo">
+        <img src="../images/AppointSuite-logo-color.png?v=4" alt="AppointSuite" class="appointsuite-logo">
         <a href="https://appointsuite.tech/book/demo-beauty-salon/" target="_blank" rel="noopener" class="btn-ms-outline">Ver una demostración</a>
     </div>
 </section>
@@ -836,8 +961,7 @@
 <!-- FOOTER -->
 <footer class="ms-footer">
     <div class="footer-col">
-        <img src="../images/GL-logo-blanco.png" alt="G&L Services Group" class="footer-logo">
-        <span class="company">G&L Services Group</span>
+        <img src="../images/GL-logo-blanco.png?v=4" alt="G&L Services Group" class="footer-logo">
         <p>+1 (437) 677-9018</p>
         <p>contact@glservicesgroup.com</p>
         <p>Woodbridge, Vaughan, Ontario, Canadá</p>
@@ -888,6 +1012,51 @@
 
 <script>
 document.getElementById('footer-year').textContent = new Date().getFullYear();
+</script>
+
+<script>
+(function () {
+    var toggle = document.getElementById('navToggle');
+    var menu = document.getElementById('navMenu');
+    var overlay = document.getElementById('navOverlay');
+    function openMenu() {
+        menu.classList.add('is-open');
+        overlay.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        var firstLink = menu.querySelector('a');
+        if (firstLink) firstLink.focus();
+    }
+    function closeMenu() {
+        menu.classList.remove('is-open');
+        overlay.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+    toggle.addEventListener('click', function () {
+        if (menu.classList.contains('is-open')) { closeMenu(); } else { openMenu(); }
+    });
+    overlay.addEventListener('click', closeMenu);
+    menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+            closeMenu();
+            toggle.focus();
+        }
+    });
+
+    document.querySelectorAll('.lang-link').forEach(function (a) {
+        var base = a.getAttribute('href');
+        function syncHash() { a.href = base + (window.location.hash || ''); }
+        syncHash();
+        window.addEventListener('hashchange', syncHash);
+        a.addEventListener('click', function () {
+            try { localStorage.setItem('glLang', a.dataset.lang); } catch (e) {}
+        });
+    });
+})();
 </script>
 
 <script>

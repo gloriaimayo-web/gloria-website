@@ -6,7 +6,7 @@
     <link rel="alternate" hreflang="en" href="https://glservicesgroup.com/en/">
     <link rel="alternate" hreflang="es" href="https://glservicesgroup.com/es/">
     <link rel="alternate" hreflang="x-default" href="https://glservicesgroup.com/">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="Organize appointments, clients and follow-up. Setup, training and human support for service businesses in Canada and Colombia.">
     <noscript><meta http-equiv="refresh" content="0; url=/en/"></noscript>
     <style>
@@ -15,8 +15,16 @@
         a { color: white; font-weight: 600; }
     </style>
     <script>
-        var lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase().startsWith('es') ? 'es' : 'en';
-        window.location.replace('/' + lang + '/');
+        (function () {
+            var lang = null;
+            try {
+                lang = localStorage.getItem('glLang');
+            } catch (e) {}
+            if (lang !== 'es' && lang !== 'en') {
+                lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase().startsWith('es') ? 'es' : 'en';
+            }
+            window.location.replace('/' + lang + '/');
+        })();
     </script>
 </head>
 <body>
