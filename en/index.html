@@ -50,12 +50,11 @@
         /* HERO */
         .ms-hero {
             background: linear-gradient(135deg, #0078D4 0%, #005A9E 50%, #50C0E0 100%);
-            padding: 80px 40px;
+            padding: 32px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 40px;
-            min-height: 480px;
         }
         .ms-hero-left { flex: 1; max-width: 580px; }
         .ms-hero-left .badge {
@@ -66,7 +65,7 @@
             font-weight: 600;
             padding: 4px 12px;
             border-radius: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
@@ -75,13 +74,13 @@
             font-weight: 700;
             color: white;
             line-height: 1.25;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .ms-hero-left p {
             font-size: 1.1rem;
             color: rgba(255,255,255,0.9);
             line-height: 1.6;
-            margin-bottom: 32px;
+            margin-bottom: 20px;
         }
         .ms-hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
         .btn-primary-hero {
@@ -108,20 +107,30 @@
         }
         .btn-secondary-hero:hover { background: rgba(255,255,255,0.15); }
         .ms-hero-right { flex: 1; max-width: 460px; }
+        .hero-photo {
+            display: block;
+            width: 100%;
+            max-width: 260px;
+            height: auto;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 16px;
+            margin: 0 auto 16px;
+        }
         .hero-card {
             background: rgba(255,255,255,0.12);
             border: 1px solid rgba(255,255,255,0.35);
             border-radius: 12px;
-            padding: 32px;
+            padding: 18px 22px;
         }
-        .hero-card h3 { color: white; font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+        .hero-card h3 { color: white; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
         .hero-card ul { list-style: none; }
-        .hero-card ul li { color: rgba(255,255,255,0.95); font-size: 0.95rem; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+        .hero-card ul li { color: rgba(255,255,255,0.95); font-size: 0.95rem; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
         .hero-card ul li:last-child { border-bottom: none; }
         .hero-card ul li::before { content: "✓  "; font-weight: 700; color: #FFB900; }
 
         /* SECTION BASE */
-        .ms-section { padding: 72px 40px; }
+        .ms-section { padding: 44px 40px; }
         .ms-section-alt { background: #F8F8F8; }
         .section-label {
             font-size: 12px;
@@ -147,10 +156,40 @@
         }
         .center { text-align: center; }
         .center .section-subtitle { margin: 0 auto 20px; }
-        .section-body { max-width: 760px; margin: 0 auto; }
+        .section-body { max-width: 760px; margin: 0 auto; text-align: center; }
         .section-body p { font-size: 1.05rem; color: #444; line-height: 1.75; margin-bottom: 16px; }
         .founder-row { display: flex; align-items: flex-start; gap: 24px; }
         .founder-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; background: #E6F1FB; border: 2px solid #0078D4; flex-shrink: 0; }
+
+        /* APPOINTSUITE MINI FEATURES */
+        .appointsuite-logo { display: block; max-height: 64px; width: auto; margin: 24px auto 16px; }
+        .feature-mini-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin: 0 0 24px; }
+        .feature-mini { background: white; border: 1px solid #e5e5e5; border-radius: 8px; padding: 12px 6px; text-align: center; }
+        .feature-mini svg { width: 22px; height: 22px; margin: 0 auto 6px; display: block; }
+        .feature-mini span { font-size: 0.72rem; font-weight: 600; color: #333; display: block; line-height: 1.3; }
+
+        /* PILOT CARDS */
+        .pilot-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 760px; margin: 24px auto 0; }
+        .pilot-card { background: white; border: 1px solid #e5e5e5; border-radius: 8px; padding: 24px; text-align: center; }
+        .pilot-card img { max-height: 56px; width: auto; margin: 0 auto 14px; display: block; }
+        .pilot-card h3 { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+        .pilot-card p { font-size: 0.88rem; color: #666; margin-bottom: 10px; }
+        .pilot-card a { color: #0078D4; font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+        .pilot-card a:hover { text-decoration: underline; }
+
+        /* ABOUT (QUIENES SOMOS) */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1000px; margin: 0 auto 32px; }
+        .about-col h3 { font-size: 1.05rem; font-weight: 700; color: #0078D4; margin-bottom: 8px; }
+        .about-col p { font-size: 0.98rem; color: #444; line-height: 1.7; margin-bottom: 20px; }
+        .about-col ul { list-style: none; }
+        .about-col ul li { font-size: 0.95rem; color: #333; line-height: 1.6; padding: 6px 0 6px 26px; position: relative; }
+        .about-col ul li::before { content: "✓"; position: absolute; left: 0; color: #0078D4; font-weight: 700; }
+        .about-values { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .about-values span { background: #E6F1FB; color: #0078D4; font-size: 0.85rem; font-weight: 600; padding: 6px 14px; border-radius: 20px; }
+        .about-lead { font-size: 0.98rem; color: #444; line-height: 1.7; max-width: 760px; margin: 0 auto 14px; text-align: center; }
+        .about-cta { font-size: 0.98rem; text-align: center; }
+        .about-cta a { color: #0078D4; font-weight: 700; text-decoration: none; }
+        .about-cta a:hover { text-decoration: underline; }
 
         /* HOW IT WORKS */
         .steps-row {
@@ -223,7 +262,7 @@
         .plans-table tr:last-child td { border-bottom: none; }
 
         /* PRICING */
-        .pricing-section { background: #F2F2F2; padding: 72px 40px; }
+        .pricing-section { background: #F2F2F2; padding: 44px 40px; }
         .country-block { max-width: 960px; margin: 0 auto 48px; }
         .country-block:last-of-type { margin-bottom: 0; }
         .country-label { font-size: 1.1rem; font-weight: 700; color: #0078D4; margin-bottom: 20px; text-align: center; }
@@ -393,11 +432,18 @@
             .functions-grid { grid-template-columns: 1fr; }
             .pricing-grid, .pricing-grid.cols-2 { grid-template-columns: 1fr; }
             .contact-blocks { grid-template-columns: 1fr; }
-            .ms-section, .pricing-section { padding: 48px 24px; }
+            .ms-section, .pricing-section { padding: 29px 24px; }
             .ms-nav { padding: 0 16px; }
             .ms-nav .company-name { display: none; }
             .steps-row::before { display: none; }
             .founder-row { flex-direction: column; align-items: center; text-align: center; }
+            .feature-mini-row { grid-template-columns: repeat(4, 1fr); }
+            .pilot-cards { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; gap: 24px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-photo { max-width: 320px; margin: 0 auto 24px; }
         }
     </style>
 </head>
@@ -430,6 +476,7 @@
         </div>
     </div>
     <div class="ms-hero-right">
+        <img src="../images/gloria-hero.webp" alt="Gloria, founder of G&amp;L Services Group" class="hero-photo" width="800" height="1000" loading="eager" fetchpriority="high">
         <div class="hero-card">
             <h3>What you get from day one</h3>
             <ul>
@@ -443,8 +490,10 @@
 
 <!-- 2. PROBLEM -->
 <section class="ms-section">
-    <div class="section-label">The Problem</div>
-    <h2 class="section-title">Is your business glued to the phone?</h2>
+    <div class="center">
+        <div class="section-label">The Problem</div>
+        <h2 class="section-title">Is your business glued to the phone?</h2>
+    </div>
     <div class="section-body">
         <p>Requests arrive mixed between calls and messages, schedules clash, changes get forgotten and client information ends up scattered. While you serve one client, you can't answer the next — and every unanswered message can be a lost booking.</p>
     </div>
@@ -452,8 +501,10 @@
 
 <!-- 3. RESULT -->
 <section class="ms-section ms-section-alt">
-    <div class="section-label">The Result</div>
-    <h2 class="section-title">An operation that stays organized while you serve clients</h2>
+    <div class="center">
+        <div class="section-label">The Result</div>
+        <h2 class="section-title">An operation that stays organized while you serve clients</h2>
+    </div>
     <div class="section-body">
         <p>Imagine a business where clients request appointments from a link or a QR code, your calendar is organized in one place, and each client's information is saved so you can invite them back. That's what we leave up and running.</p>
     </div>
@@ -497,10 +548,22 @@
 
 <!-- 5. PLATFORM -->
 <section class="ms-section ms-section-alt" id="plataforma">
-    <div class="section-label">AppointSuite as a Platform</div>
-    <h2 class="section-title">A platform we configure and maintain for you</h2>
-    <div class="section-body center">
+    <div class="center">
+        <div class="section-label">AppointSuite as a Platform</div>
+        <h2 class="section-title">A platform we configure and maintain for you</h2>
+    </div>
+    <div class="section-body">
         <p>AppointSuite is our booking and client-management platform. Your business data stays yours; AppointSuite is the tool we configure and maintain for you. You focus on serving clients; we keep the technology running.</p>
+        <div class="feature-mini-row">
+            <div class="feature-mini"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg><span>Booking</span></div>
+            <div class="feature-mini"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="8.5" r="2.4"/><path d="M15.2 14.3c2.9.4 5.3 2.6 5.3 5.7"/></svg><span>CRM</span></div>
+            <div class="feature-mini"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 21h8M12 16v5"/></svg><span>Portal</span></div>
+            <div class="feature-mini"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" aria-hidden="true"><path d="M4 20V10M12 20V4M20 20v-7M2 20h20"/></svg><span>Reports</span></div>
+            <div class="feature-mini"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 20v.01"/></svg><span>QR</span></div>
+            <div class="feature-mini"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" aria-hidden="true"><path d="M6 10a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span>Reminders</span></div>
+            <div class="feature-mini"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4.2 6 4.2 9s-1.4 6.4-4.2 9c-2.8-2.6-4.2-6-4.2-9s1.4-6.4 4.2-9Z"/></svg><span>Bilingual</span></div>
+        </div>
+        <img src="../images/logo-appointsuite.png" alt="AppointSuite" class="appointsuite-logo">
         <a href="https://appointsuite.tech/book/demo-beauty-salon/" target="_blank" rel="noopener" class="btn-ms-outline">See a live demo</a>
     </div>
 </section>
@@ -622,8 +685,10 @@
 
 <!-- 9. MONTHLY SUPPORT -->
 <section class="ms-section" id="acompanamiento">
-    <div class="section-label">Monthly Support</div>
-    <h2 class="section-title">We keep the technology running</h2>
+    <div class="center">
+        <div class="section-label">Monthly Support</div>
+        <h2 class="section-title">We keep the technology running</h2>
+    </div>
     <div class="section-body">
         <p>The monthly service keeps your platform active and includes hosting, general maintenance, corrective updates and support within the contracted scope. New modules, integrations, custom development, third-party services or premium features may involve additional fees.</p>
     </div>
@@ -631,10 +696,26 @@
 
 <!-- 10. PILOT CASES -->
 <section class="ms-section ms-section-alt" id="casos-piloto">
-    <div class="section-label">Pilot Cases</div>
-    <h2 class="section-title">Validating AppointSuite with real businesses</h2>
+    <div class="center">
+        <div class="section-label">Current Pilots</div>
+        <h2 class="section-title">Validating AppointSuite with real businesses</h2>
+    </div>
     <div class="section-body">
         <p>AppointSuite is already used in pilot projects with small businesses in Canada and Colombia. These cases let us validate the platform, understand real needs and continuously improve the service.</p>
+        <div class="pilot-cards">
+            <div class="pilot-card">
+                <img src="../images/pilotos/vaughan-sewing.png" alt="Vaughan Sewing">
+                <h3>Vaughan Sewing</h3>
+                <p>Vaughan, Ontario, Canada</p>
+                <a href="https://vaughansewing.ca" target="_blank" rel="noopener">Visit website →</a>
+            </div>
+            <div class="pilot-card">
+                <img src="../images/pilotos/vivir-ligero.png" alt="Vivir Ligero">
+                <h3>Vivir Ligero</h3>
+                <p>Colombia</p>
+                <a href="https://vivirligero.co" target="_blank" rel="noopener">Visit website →</a>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -674,15 +755,34 @@
 
 <!-- 13. G&L SERVICES GROUP -->
 <section class="ms-section ms-section-alt" id="gl">
-    <div class="section-label">Who We Are</div>
-    <h2 class="section-title">G&amp;L Services Group</h2>
-    <div class="section-body founder-row">
-        <img src="../images/gloria-mayo.jpg" alt="Gloria Mayo, founder of G&amp;L Services Group" class="founder-photo" onerror="this.style.display='none'">
-        <div>
-            <p>G&amp;L Services Group develops and implements technology solutions that help businesses stay organized, improve client service and connect people with services. AppointSuite is our core booking and client-management platform.</p>
-            <p>The service is led by Gloria Mayo, a systems engineer with experience in process and quality management, founder of G&amp;L Services Group and creator of AppointSuite.</p>
+    <div class="center">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">G&amp;L Services Group</h2>
+    </div>
+    <div class="about-grid">
+        <div class="about-col">
+            <h3>Our mission</h3>
+            <p>We help appointment-based service businesses save time and money. We organize and automate their bookings, schedules and client records with our own technology and hands-on support, in English and Spanish. Fewer calls and manual tasks; more time to serve clients, take more bookings and grow the business.</p>
+            <h3>Our vision</h3>
+            <p>To become the trusted digital-organization partner for service businesses in Canada and Latin America.</p>
+        </div>
+        <div class="about-col">
+            <h3>What makes us different</h3>
+            <ul>
+                <li>Our own technology. We build AppointSuite, our booking and client-management platform. We don't resell third-party software.</li>
+                <li>A method, not guesswork. Every implementation follows the same five phases, based on quality-management principles.</li>
+                <li>Human, bilingual support. We guide you in your language until you can use the solution with confidence.</li>
+            </ul>
         </div>
     </div>
+    <div class="about-values">
+        <span>Clarity</span>
+        <span>Reliability</span>
+        <span>Care</span>
+        <span>Continuous improvement</span>
+    </div>
+    <p class="about-lead">G&amp;L Services Group is led by Gloria Mayo, a systems engineer with 15+ years of experience in processes, logistics and quality management, founder of the company and creator of AppointSuite.</p>
+    <p class="about-cta">Interested in supporting or investing in G&amp;L Services Group's growth? <a href="#contacto">Let's talk →</a></p>
 </section>
 
 <!-- 14. INNOVATION -->
